@@ -40,7 +40,7 @@ class _WelcomePageState extends State<WelcomePage> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                const Text('WELCOME', style: kTextBodyHeader),
+                const Text('Hi!', style: kTextBodyHeader),
                 const SizedBox(
                   height: 10.0
                 ),
@@ -61,6 +61,9 @@ class _WelcomePageState extends State<WelcomePage> {
                         ),
                       ),
                     ),
+                    SizedBox(
+                      width: 5.0,
+                    ),
                     ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.resolveWith(
@@ -77,6 +80,9 @@ class _WelcomePageState extends State<WelcomePage> {
                       ),
                     ),
                   ],
+                ),
+                SizedBox(
+                  height: 5.0,
                 ),
                 ElevatedButton(
                   style: ButtonStyle(

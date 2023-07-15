@@ -40,7 +40,7 @@ class _LoginPageState extends State<LoginPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                const Text('WELCOME', style: kTextBodyHeader),
+                const Text('Login', style: kTextBodyHeader),
                 const SizedBox(
                   height: 20.0,
                 ),
