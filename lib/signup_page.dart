@@ -12,15 +12,17 @@ class SignUpPage extends StatefulWidget {
 
 enum Member { viewer, judge }
 
-
 class _SignUpPageState extends State<SignUpPage> {
   bool remember = false;
   Member? member = Member.viewer;
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Bots \'n Bids'),
+        backgroundColor: kSecondaryColor,
+      ),
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
@@ -30,8 +32,8 @@ class _SignUpPageState extends State<SignUpPage> {
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(
-            horizontal: 40.0,
-            vertical: 60.0,
+            horizontal: 20.0,
+            vertical: 20.0,
           ),
           child: Container(
             decoration: BoxDecoration(
@@ -156,7 +158,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(context, '/marksheet');
+                        Navigator.pushNamed(context, '/home');
                       },
                       child: Card(
                         child: TextButton(

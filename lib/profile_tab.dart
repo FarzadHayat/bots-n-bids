@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'constants.dart';
+
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
 
@@ -10,6 +12,14 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Container(
+      decoration: const BoxDecoration(
+        color: kPrimaryColor,
+        image: DecorationImage(
+          image: AssetImage('assets/images/judge-profile.jpg'),
+          fit: BoxFit.contain,
+        ),
+      ),
+    );
   }
 }

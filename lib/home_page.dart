@@ -1,9 +1,9 @@
-import 'package:bots_n_bids/profile_page.dart';
-import 'package:bots_n_bids/scoreboard_page.dart';
+import 'package:bots_n_bids/profile_tab.dart';
+import 'package:bots_n_bids/scoreboard_tab.dart';
 import 'package:flutter/material.dart';
 
 import 'constants.dart';
-import 'marksheet_page.dart';
+import 'marksheet_tab.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
