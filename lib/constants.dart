@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 const kTextBodyHeader = TextStyle(
-  fontSize: 50.0,
-  fontFamily: 'Ubuntu',
+  fontSize: 40.0,
+  fontFamily: 'Tektur',
   color: Colors.white,
   fontWeight: FontWeight.bold,
 );

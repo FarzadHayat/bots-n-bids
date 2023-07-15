@@ -21,3 +21,8 @@ flutter:
   assets:
    - assets/images/
    - assets/icons/
+
+  fonts:
+    - family: Tektur
+      fonts:
+        - asset: assets/tektur.ttf

@@ -32,10 +32,7 @@ class _LoginPageState extends State<LoginPage> {
             minHeight: 0,
           ),
           decoration: BoxDecoration(
-            color: Colors.grey.withOpacity(0.4),
-            borderRadius: BorderRadius.circular(
-              20.0,
-            ),
+            color: Colors.grey.withOpacity(0.2),
           ),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -102,7 +99,7 @@ class _LoginPageState extends State<LoginPage> {
                             (states) => Colors.white),
                       ),
                       onPressed: () {
-                        Navigator.pushNamed(context, '/marksheet');
+                        Navigator.pushNamed(context, '/home');
                       },
                       child: const Text(
                         'LOG IN AS VIEWER',
@@ -120,7 +117,7 @@ class _LoginPageState extends State<LoginPage> {
                             (states) => Colors.white),
                       ),
                       onPressed: () {
-                        Navigator.pushNamed(context, '/marksheet');
+                        Navigator.pushNamed(context, '/home');
                       },
                       child: const Text(
                         'LOG IN AS JUDGE',
