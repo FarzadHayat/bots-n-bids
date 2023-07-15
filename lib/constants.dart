@@ -7,6 +7,11 @@ const kTextBodyHeader = TextStyle(
   fontWeight: FontWeight.bold,
 );
 
+const kText = TextStyle(
+  fontSize: 16.0,
+  color: Colors.white,
+);
+
 const kTextPenaltyEntry = TextStyle(
   fontSize: 18.0,
   fontFamily: 'Tektur',

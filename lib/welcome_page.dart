@@ -42,9 +42,11 @@ class _WelcomePageState extends State<WelcomePage> {
               children: <Widget>[
                 const Text('Hi!', style: kTextBodyHeader),
                 const SizedBox(
-                  height: 10.0
+                  height: 20.0
                 ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     ElevatedButton(
                       style: ButtonStyle(
