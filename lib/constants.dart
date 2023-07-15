@@ -8,8 +8,9 @@ const kTextBodyHeader = TextStyle(
 );
 
 const kText = TextStyle(
-  fontSize: 16.0,
+  fontSize: 18.0,
   color: Colors.white,
+  fontFamily: 'Tektur',
 );
 
 const kTextPenaltyEntry = TextStyle(

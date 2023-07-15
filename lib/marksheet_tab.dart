@@ -72,7 +72,6 @@ class _MarksheetPageState extends State<MarksheetPage> {
                     },
                     decoration: const InputDecoration(
                       hintText: 'Enter your team name',
-                      labelText: 'Team name',
                       border: OutlineInputBorder(),
                       filled: true,
                       fillColor: Colors.white,
@@ -87,7 +86,7 @@ class _MarksheetPageState extends State<MarksheetPage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text('TIME', style: kTextPenaltyEntry),
+                const Text('TIME (seconds)', style: kTextPenaltyEntry),
                 SizedBox(
                   width: 200.0,
                   child: TextField(
@@ -103,8 +102,7 @@ class _MarksheetPageState extends State<MarksheetPage> {
                       FilteringTextInputFormatter.digitsOnly,
                     ],
                     decoration: const InputDecoration(
-                      labelText: 'Time (seconds)',
-                      hintText: 'Enter your  here',
+                      hintText: 'Enter your time here',
                       border: OutlineInputBorder(),
                       filled: true,
                       fillColor: Colors.white,

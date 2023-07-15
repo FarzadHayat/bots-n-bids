@@ -27,7 +27,13 @@ class _ScoreboardPageState extends State<ScoreboardPage> {
       ),
       child: Column(
         children: [
-          Text('Scoreboard', style: kTextBodyHeader),
+          const SizedBox(
+            height: 20.0,
+          ),
+          const Text('Scoreboard', style: kTextBodyHeader),
+          const SizedBox(
+            height: 20.0,
+          ),
           Expanded(
             child: ListView.builder(
               itemCount: teams.length,
@@ -35,7 +41,8 @@ class _ScoreboardPageState extends State<ScoreboardPage> {
                 final competitor = teams[index];
 
                 return ListTile(
-                  leading: Text('${index + 1}', style: kText),
+                  leading: Text('${index + 1}',
+                      style: kTextBodyHeader.copyWith(color: Colors.amber)),
                   title: Text(competitor.name, style: kText),
                   trailing: Text('Lap Time: ${competitor.getLapTimeAsString()}',
                       style: kText),
