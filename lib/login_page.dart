@@ -96,7 +96,7 @@ class _LoginPageState extends State<LoginPage> {
                         (states) => Colors.white),
                   ),
                   onPressed: () {
-                    Navigator.pushNamed(context, '/profile');
+                    Navigator.pushNamed(context, '/home');
                   },
                   child: const Text(
                     'LOG IN',

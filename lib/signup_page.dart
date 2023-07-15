@@ -10,12 +10,12 @@ class SignUpPage extends StatefulWidget {
   State<SignUpPage> createState() => _SignUpPageState();
 }
 
-enum Member { viewer, judge }
+enum Member { Spectator, Judge }
 
 
 class _SignUpPageState extends State<SignUpPage> {
   bool remember = false;
-  Member? member = Member.viewer;
+  Member? member = Member.Spectator;
 
 
   @override
@@ -56,7 +56,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         child: ListTile(
                           title: Text('Viewer'),
                           leading: Radio<Member>(
-                            value: Member.viewer,
+                            value: Member.Spectator,
                             groupValue: member,
                             onChanged: (Member? value) {
                               setState(() {
@@ -70,7 +70,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         child: ListTile(
                           title: Text('Judge'),
                           leading: Radio<Member>(
-                            value: Member.judge,
+                            value: Member.Judge,
                             groupValue: member,
                             onChanged: (Member? value) {
                               setState(() {
@@ -156,7 +156,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(context, '/marksheet');
+                        Navigator.pushNamed(context, '/home');
                       },
                       child: Card(
                         child: TextButton(
