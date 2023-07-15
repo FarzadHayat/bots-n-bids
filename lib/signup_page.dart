@@ -12,15 +12,17 @@ class SignUpPage extends StatefulWidget {
 
 enum Member { Spectator, Judge }
 
-
 class _SignUpPageState extends State<SignUpPage> {
   bool remember = false;
   Member? member = Member.Spectator;
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Bots \'n Bids'),
+        backgroundColor: kSecondaryColor,
+      ),
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
@@ -30,8 +32,8 @@ class _SignUpPageState extends State<SignUpPage> {
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(
-            horizontal: 40.0,
-            vertical: 60.0,
+            horizontal: 20.0,
+            vertical: 20.0,
           ),
           child: Container(
             decoration: BoxDecoration(

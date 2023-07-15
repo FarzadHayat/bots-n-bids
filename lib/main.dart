@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
-
 import 'login_page.dart';
 import 'home_page.dart';
-import 'marksheet_page.dart';
 import 'signup_page.dart';
 import 'welcome_page.dart';
 
@@ -21,10 +19,9 @@ class BotsNBids extends StatelessWidget {
       title: 'Bots \'n Babes',
       routes: {
         '/welcome': (context) => const WelcomePage(),
-        '/home': (context) => const HomePage(),
         '/login': (context) => const LoginPage(),
         '/signup': (context) => const SignUpPage(),
-        '/marksheet': (context) => const MarksheetPage(),
+        '/home': (context) => const HomePage(),
       },
       initialRoute: '/welcome',
     );
