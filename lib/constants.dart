@@ -6,3 +6,6 @@ const kTextBodyHeader = TextStyle(
   color: Colors.white,
   fontWeight: FontWeight.bold,
 );
+
+const kPrimaryColor = Color(0xFF0f1627);
+const kSecondaryColor = Color(0xFF004AAD);

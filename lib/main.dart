@@ -16,10 +16,10 @@ class BotsNBids extends StatelessWidget {
     return MaterialApp(
       title: 'Bots \'n Babes',
       routes: {
-        '/': (context) => const LoginPage(),
-        '/marksheet': (context) => MarksheetPage(),
+        '/login': (context) => const LoginPage(),
+        '/marksheet': (context) => const MarksheetPage(),
       },
-      initialRoute: '/',
+      initialRoute: '/login',
     );
   }
 }
