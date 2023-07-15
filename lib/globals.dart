@@ -20,4 +20,12 @@ class Globals {
     password: 'password',
     memberType: Member.Judge,
   );
+
+  List<Team> getTeams() {
+    return teams;
+  }
+
+  void addTeam(Team team) {
+    teams.add(team);
+  }
 }

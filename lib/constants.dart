@@ -13,7 +13,7 @@ const kText = TextStyle(
 );
 
 const kTextPenaltyEntry = TextStyle(
-  fontSize: 18.0,
+  fontSize: 16.0,
   fontFamily: 'Tektur',
   color: Colors.white,
   fontWeight: FontWeight.bold,

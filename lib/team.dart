@@ -1,5 +1,7 @@
 import 'package:bots_n_bids/penalty_entry.dart';
 
+import 'dart:math';
+
 class Team {
   Team({required this.name});
 
@@ -24,5 +26,14 @@ class Team {
   int getBestLapTime() {
     return _lapTimes.reduce(
         (currentMax, element) => currentMax > element ? currentMax : element);
+  }
+
+  String getLapTimeAsString() {
+    String minutes = (getBestLapTime() / 60).floor().toString();
+    String seconds = (getBestLapTime() % 60).toString();
+    if (seconds.length < 2) {
+      seconds = '0$seconds';
+    }
+    return '$minutes:$seconds';
   }
 }

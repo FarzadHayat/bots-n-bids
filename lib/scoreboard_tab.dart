@@ -1,5 +1,8 @@
 import 'package:bots_n_bids/constants.dart';
+import 'package:bots_n_bids/team.dart';
 import 'package:flutter/material.dart';
+
+import 'globals.dart';
 
 class ScoreboardPage extends StatefulWidget {
   const ScoreboardPage({super.key});
@@ -9,31 +12,7 @@ class ScoreboardPage extends StatefulWidget {
 }
 
 class _ScoreboardPageState extends State<ScoreboardPage> {
-  List<Map<String, dynamic>> competitors = [
-    {'teamName': 'John', 'lapTime': '1:23'},
-    {'teamName': 'Sarah', 'lapTime': '1:45'},
-    {'teamName': 'Michael', 'lapTime': '1:30'},
-    {'teamName': 'Michael', 'lapTime': '1:30'},
-    {'teamName': 'Michael', 'lapTime': '1:30'},
-    {'teamName': 'Michael', 'lapTime': '1:30'},
-    {'teamName': 'Michael', 'lapTime': '1:30'},
-    {'teamName': 'Michael', 'lapTime': '1:30'},
-    {'teamName': 'Michael', 'lapTime': '1:30'},
-    {'teamName': 'Michael', 'lapTime': '1:30'},
-    {'teamName': 'Michael', 'lapTime': '1:30'},
-    {'teamName': 'Michael', 'lapTime': '1:30'},
-    {'teamName': 'Michael', 'lapTime': '1:30'},
-    {'teamName': 'Michael', 'lapTime': '1:30'},
-    {'teamName': 'Michael', 'lapTime': '1:30'},
-    {'teamName': 'Michael', 'lapTime': '1:30'},
-    {'teamName': 'Michael', 'lapTime': '1:30'},
-    {'teamName': 'Michael', 'lapTime': '1:30'},
-    {'teamName': 'Michael', 'lapTime': '1:30'},
-    {'teamName': 'Michael', 'lapTime': '1:30'},
-    {'teamName': 'Michael', 'lapTime': '1:30'},
-    {'teamName': 'Michael', 'lapTime': '1:30'},
-    // Add more competitors as needed
-  ];
+  List<Team> teams = Globals().getTeams();
 
   @override
   Widget build(BuildContext context) {
@@ -51,15 +30,15 @@ class _ScoreboardPageState extends State<ScoreboardPage> {
           Text('Scoreboard', style: kTextBodyHeader),
           Expanded(
             child: ListView.builder(
-              itemCount: competitors.length,
+              itemCount: teams.length,
               itemBuilder: (context, index) {
-                final competitor = competitors[index];
+                final competitor = teams[index];
 
                 return ListTile(
                   leading: Text('${index + 1}', style: kText),
-                  title: Text(competitor['teamName'], style: kText),
-                  trailing:
-                      Text('Lap Time: ${competitor['lapTime']}', style: kText),
+                  title: Text(competitor.name, style: kText),
+                  trailing: Text('Lap Time: ${competitor.getLapTimeAsString()}',
+                      style: kText),
                 );
               },
             ),

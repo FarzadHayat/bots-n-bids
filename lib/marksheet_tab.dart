@@ -1,6 +1,10 @@
 import 'package:bots_n_bids/constants.dart';
 import 'package:bots_n_bids/penalty_entry.dart';
+import 'package:bots_n_bids/team.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+import 'globals.dart';
 
 class MarksheetPage extends StatefulWidget {
   const MarksheetPage({super.key});
@@ -18,14 +22,16 @@ class _MarksheetPageState extends State<MarksheetPage> {
     PenaltyEntry(label: 'Taking Right Fork', increment: -5),
   ];
 
-  final TextEditingController _textEditingController = TextEditingController();
+  final TextEditingController _timeController = TextEditingController();
   String _timeValue = '';
+  final TextEditingController _teamNameController = TextEditingController();
   String _teamNameValue = '';
 
   @override
   void dispose() {
     // Dispose the controller when the widget is disposed
-    _textEditingController.dispose();
+    _timeController.dispose();
+    _teamNameController.dispose();
     super.dispose();
   }
 
@@ -40,70 +46,98 @@ class _MarksheetPageState extends State<MarksheetPage> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(
-            child: Column(
-              children: penalties,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: penalties,
+              ),
             ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              const Text('ENTER TIME', style: kTextPenaltyEntry),
-              SizedBox(
-                width: 200.0,
-                child: TextField(
-                  controller: _textEditingController,
-                  onChanged: (value) {
-                    // Update the value whenever the text changes
-                    setState(() {
-                      _timeValue = value;
-                    });
-                  },
-                  decoration: const InputDecoration(
-                    hintText: 'Enter your username here',
-                    labelText: 'Username',
-                    border: OutlineInputBorder(),
-                    filled: true,
-                    fillColor: Colors.white,
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text('TEAM NAME', style: kTextPenaltyEntry),
+                SizedBox(
+                  width: 200.0,
+                  child: TextField(
+                    controller: _teamNameController,
+                    onChanged: (value) {
+                      // Update the value whenever the text changes
+                      setState(() {
+                        _teamNameValue = value;
+                      });
+                    },
+                    decoration: const InputDecoration(
+                      hintText: 'Enter your team name',
+                      labelText: 'Team name',
+                      border: OutlineInputBorder(),
+                      filled: true,
+                      fillColor: Colors.white,
+                    ),
                   ),
                 ),
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              const Text('TEAM NAME', style: kTextPenaltyEntry),
-              SizedBox(
-                width: 200.0,
-                child: TextField(
-                  controller: _textEditingController,
-                  onChanged: (value) {
-                    // Update the value whenever the text changes
-                    setState(() {
-                      _teamNameValue = value;
-                    });
-                  },
-                  decoration: const InputDecoration(
-                    hintText: 'Enter your username here',
-                    labelText: 'Username',
-                    border: OutlineInputBorder(),
-                    filled: true,
-                    fillColor: Colors.white,
-                  ),
-                ),
-              ),
-            ],
-          ),
-          ElevatedButton(
-            style: ButtonStyle(
-              backgroundColor:
-                  MaterialStateProperty.resolveWith((states) => Colors.white),
+              ],
             ),
-            onPressed: () {},
-            child: const Text(
-              'SUBMIT SCORE',
-              style: TextStyle(
-                color: kPrimaryColor,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text('TIME', style: kTextPenaltyEntry),
+                SizedBox(
+                  width: 200.0,
+                  child: TextField(
+                    controller: _timeController,
+                    onChanged: (value) {
+                      // Update the value whenever the text changes
+                      setState(() {
+                        _timeValue = value;
+                      });
+                    },
+                    keyboardType: TextInputType.number,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.digitsOnly,
+                    ],
+                    decoration: const InputDecoration(
+                      labelText: 'Time (seconds)',
+                      hintText: 'Enter your  here',
+                      border: OutlineInputBorder(),
+                      filled: true,
+                      fillColor: Colors.white,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              vertical: 8.0,
+              horizontal: 120.0,
+            ),
+            child: ElevatedButton(
+              style: ButtonStyle(
+                backgroundColor:
+                    MaterialStateProperty.resolveWith((states) => Colors.white),
+              ),
+              onPressed: () {
+                setState(() {
+                  Team team = Team(name: _teamNameValue);
+                  team.addLap(
+                      timeInSeconds: int.parse(_timeValue),
+                      penalties: penalties);
+                  Globals().addTeam(team);
+                });
+              },
+              child: const Text(
+                'SUBMIT SCORE',
+                style: TextStyle(
+                  color: kPrimaryColor,
+                ),
               ),
             ),
           ),
