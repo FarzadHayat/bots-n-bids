@@ -20,15 +20,17 @@ class _MarksheetPageState extends State<MarksheetPage> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Column(
-            children: [
-              PenaltyEntry(label: '1 Wheel outside boundaries', increment: 2),
-              PenaltyEntry(
-                  label: 'Multi wheel outside boundaries', increment: 5),
-              PenaltyEntry(label: 'Non-stopping collision', increment: 5),
-              PenaltyEntry(label: 'Stopping collision', increment: 20),
-              PenaltyEntry(label: 'Taking Right Fork', increment: -5),
-            ],
+          Expanded(
+            child: Column(
+              children: [
+                PenaltyEntry(label: '1 Wheel outside boundaries', increment: 2),
+                PenaltyEntry(
+                    label: 'Multi wheel outside boundaries', increment: 5),
+                PenaltyEntry(label: 'Non-stopping collision', increment: 5),
+                PenaltyEntry(label: 'Stopping collision', increment: 20),
+                PenaltyEntry(label: 'Taking Right Fork', increment: -5),
+              ],
+            ),
           ),
           const Row(
             mainAxisAlignment: MainAxisAlignment.center,
