@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
+
 import 'login_page.dart';
 import 'home_page.dart';
+import 'marksheet_page.dart';
+import 'signup_page.dart';
+import 'welcome_page.dart';
 
 void main() {
   runApp(const BotsNBids());
@@ -16,10 +20,13 @@ class BotsNBids extends StatelessWidget {
     return MaterialApp(
       title: 'Bots \'n Babes',
       routes: {
-        '/login': (context) => const LoginPage(),
+        '/welcome': (context) => const WelcomePage(),
         '/home': (context) => const HomePage(),
+        '/login': (context) => const LoginPage(),
+        '/signup': (context) => const SignUpPage(),
+        '/marksheet': (context) => const MarksheetPage(),
       },
-      initialRoute: '/login',
+      initialRoute: '/welcome',
     );
   }
 }
