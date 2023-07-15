@@ -1,8 +1,9 @@
-import 'dart:html';
+import 'package:bots_n_bids/profile.dart';
 import 'package:bots_n_bids/signup_page.dart';
 import 'package:flutter/material.dart';
 
 import 'constants.dart';
+import 'globals.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -12,10 +13,7 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  int coins = 125;
-  String username = 'JohnDoe';
-  String email = 'johndoe@something.com';
-  Member memberType = Member.Spectator;
+  Profile profile = Globals().currentProfile;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +32,7 @@ class _ProfilePageState extends State<ProfilePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-                (memberType == Member.Spectator)
+                (profile.memberType == Member.Spectator)
                     ? 'Welcome Viewer!'
                     : 'Welcome Judge!',
                 style: TextStyle(
@@ -48,7 +46,7 @@ class _ProfilePageState extends State<ProfilePage> {
               children: [
                 const Text('USERNAME:', style: kText),
                 SizedBox(width: 5.0),
-                Text('$username', style: kText),
+                Text('${profile.name}', style: kText),
               ],
             ),
             SizedBox(
@@ -58,7 +56,7 @@ class _ProfilePageState extends State<ProfilePage> {
               children: [
                 const Text('EMAIL:', style: kText),
                 SizedBox(width: 5.0),
-                Text('$email', style: kText),
+                Text('${profile.email}', style: kText),
               ],
             ),
             SizedBox(
@@ -74,7 +72,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         width:
                             8.0), // Adjust the spacing between the icon and the text
                     Text(
-                      '$coins', // Convert the int variable to a String using string interpolation
+                      '${profile.coins}', // Convert the int variable to a String using string interpolation
                       style: TextStyle(fontSize: 16.0, color: Colors.white),
                     ),
                   ],

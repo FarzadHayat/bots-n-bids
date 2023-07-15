@@ -21,6 +21,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: const Text('Bots \'n Bids'),
         backgroundColor: kSecondaryColor,
+        leading: const SizedBox(),
       ),
       body: IndexedStack(
         index: _currentIndex,
