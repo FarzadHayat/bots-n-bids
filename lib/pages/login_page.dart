@@ -15,6 +15,8 @@ final _formkey = GlobalKey<FormState>();
 
 class _LoginPageState extends State<LoginPage> {
   bool remember = false;
+  TextEditingController _textUsername = TextEditingController();
+  TextEditingController _textPassword = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -51,6 +53,7 @@ class _LoginPageState extends State<LoginPage> {
                     height: 20.0,
                   ),
                   TextFormField(
+                    controller: _textUsername,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return "Username required!";
@@ -64,6 +67,7 @@ class _LoginPageState extends State<LoginPage> {
                     height: 10.0,
                   ),
                   TextFormField(
+                    controller: _textPassword,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return "Password required!";
@@ -105,6 +109,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     onPressed: () {
                       if (_formkey.currentState!.validate()) {
+                        // List<Profile> = Globals().
                         setState(() {
                           Globals().login(Profile(
                             name: 'John Roe',

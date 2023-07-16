@@ -11,8 +11,8 @@ class Globals {
 
   Globals._internal();
 
-  List<Profile> profiles = [];
-  List<Team> teams = [];
+  List<Profile> _profiles = [];
+  List<Team> _teams = [];
 
   Profile currentProfile = Profile(
     name: 'John Doe',
@@ -23,11 +23,11 @@ class Globals {
   bool isLoggedIn = false;
 
   List<Team> getTeams() {
-    return teams;
+    return _teams;
   }
 
   void addTeam(Team team) {
-    teams.add(team);
+    _teams.add(team);
   }
 
   void login(Profile profile) {
@@ -39,7 +39,11 @@ class Globals {
     isLoggedIn = false;
   }
 
-  void addProfile(Profile) {
+  void addProfile(Profile profile) {
+    _profiles.add(profile);
+  }
 
+  List<Profile> getProfiles() {
+    return _profiles;
   }
 }
