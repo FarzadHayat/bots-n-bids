@@ -9,6 +9,7 @@ import '../data/profile.dart';
 import '../tabs/place_bids_tab.dart';
 import '../constants.dart';
 import '../tabs/marksheet_tab.dart';
+import '../tabs/view_bids_tab.dart';
 
 class BidderPage extends StatefulWidget {
   const BidderPage({super.key});
@@ -33,6 +34,7 @@ class _BidderPageState extends State<BidderPage> {
         children: const [
           ProfilePage(memberType: MemberType.Spectator),
           PlaceBidsTab(),
+          ViewBidsTab(),
           ScoreboardPage(),
         ],
       ),
@@ -62,6 +64,14 @@ class _BidderPageState extends State<BidderPage> {
               height: 50.0,
             ),
             label: 'Place bids',
+          ),
+          BottomNavigationBarItem(
+            icon: Image.asset(
+              'assets/icons/search.png',
+              width: 50.0,
+              height: 50.0,
+            ),
+            label: 'View bids',
           ),
           BottomNavigationBarItem(
             icon: Image.asset(

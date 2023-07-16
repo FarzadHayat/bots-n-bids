@@ -1,21 +1,21 @@
 import 'package:bots_n_bids/constants.dart';
 import 'package:flutter/material.dart';
 
-class PlaceBidsTab extends StatefulWidget {
-  const PlaceBidsTab({super.key});
+class ViewBidsTab extends StatefulWidget {
+  const ViewBidsTab({super.key});
 
   @override
-  State<PlaceBidsTab> createState() => _PlaceBidsTabState();
+  State<ViewBidsTab> createState() => _ViewBidsTabState();
 }
 
-class _PlaceBidsTabState extends State<PlaceBidsTab> {
+class _ViewBidsTabState extends State<ViewBidsTab> {
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
         color: kPrimaryColor,
         image: DecorationImage(
-          image: AssetImage('assets/images/place_bids.jpg'),
+          image: AssetImage('assets/images/view_bids.jpg'),
           fit: BoxFit.cover,
         ),
       ),

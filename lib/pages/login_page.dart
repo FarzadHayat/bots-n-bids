@@ -17,7 +17,9 @@ final _formkey = GlobalKey<FormState>();
 
 Profile? findProfileByUsername(String username) {
   try {
-    return Globals().getProfiles().firstWhere((profile) => profile.name == username);
+    return Globals()
+        .getProfiles()
+        .firstWhere((profile) => profile.name == username);
   } catch (e) {
     return null;
   }
@@ -73,13 +75,11 @@ class _LoginPageState extends State<LoginPage> {
 
                       if (value == null || value.isEmpty) {
                         return "Username required!";
-                      }
-                      else if (foundUser != null &&
-                      foundUser.password == password &&
-                      widget.memberType == foundUser.memberType) {
+                      } else if (foundUser != null &&
+                          foundUser.password == password &&
+                          widget.memberType == foundUser.memberType) {
                         return "Username or Password is incorrect";
-                      }
-                      else {
+                      } else {
                         return null;
                       }
                     },
@@ -133,17 +133,15 @@ class _LoginPageState extends State<LoginPage> {
                         Profile foundUser = findProfileByUsername(username)!;
 
                         setState(() {
-                            Globals().login(foundUser);
+                          Globals().login(foundUser);
 
-                            if (widget.memberType == MemberType.Spectator) {
-                              Navigator.pushNamed(context, '/bidder_home');
-                            }
-                            else {
-                              Navigator.pushNamed(context, '/judge_home');
-                            }
-                          });
-                        }
-
+                          if (widget.memberType == MemberType.Spectator) {
+                            Navigator.pushNamed(context, '/bidder_home');
+                          } else {
+                            Navigator.pushNamed(context, '/judge_home');
+                          }
+                        });
+                      }
                     },
                     child: const Text(
                       'LOG IN',
