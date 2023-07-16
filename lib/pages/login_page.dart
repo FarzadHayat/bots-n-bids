@@ -67,9 +67,19 @@ class _LoginPageState extends State<LoginPage> {
                   TextFormField(
                     controller: _textUsername,
                     validator: (value) {
+                      String username = _textUsername.text;
+                      String password = _textPassword.text;
+                      Profile? foundUser = findProfileByUsername(username);
+
                       if (value == null || value.isEmpty) {
                         return "Username required!";
-                      } else {
+                      }
+                      else if (foundUser != null &&
+                      foundUser.password == password &&
+                      widget.memberType == foundUser.memberType) {
+                        return "Username or Password is incorrect";
+                      }
+                      else {
                         return null;
                       }
                     },
@@ -120,19 +130,20 @@ class _LoginPageState extends State<LoginPage> {
                     onPressed: () {
                       if (_formkey.currentState!.validate()) {
                         String username = _textUsername.text;
-                        String password = _textPassword.text;
+                        Profile foundUser = findProfileByUsername(username)!;
 
-                        Profile? foundUser = findProfileByUsername(username);
-
-                        if (foundUser != null &&
-                            foundUser.password == password) {
-                          setState(() {
+                        setState(() {
                             Globals().login(foundUser);
 
-                            Navigator.pushNamed(context, '/home');
+                            if (widget.memberType == MemberType.Spectator) {
+                              Navigator.pushNamed(context, '/bidder_home');
+                            }
+                            else {
+                              Navigator.pushNamed(context, '/judge_home');
+                            }
                           });
                         }
-                      }
+
                     },
                     child: const Text(
                       'LOG IN',

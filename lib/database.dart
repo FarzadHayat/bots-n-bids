@@ -11,7 +11,14 @@ class Globals {
 
   Globals._internal();
 
-  List<Profile> _profiles = [];
+  List<Profile> _profiles = [
+    Profile(
+      memberType: MemberType.Spectator,
+      email: 'a',
+      name: 'a',
+      password: 'a'
+    )
+  ];
   List<Team> _teams = [];
 
   Profile currentProfile = Profile(

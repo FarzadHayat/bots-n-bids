@@ -197,7 +197,9 @@ class _SignUpPageState extends State<SignUpPage> {
                       padding: const EdgeInsets.symmetric(horizontal: 20.0),
                       child: GestureDetector(
                         onTap: () {
+                          print('a');
                           if (_formkey.currentState!.validate()) {
+                            print('b');
                             String email = _textEmail.text;
                             String username = _textUsername.text;
                             String password = _textPassword.text;
@@ -211,12 +213,45 @@ class _SignUpPageState extends State<SignUpPage> {
                               password: password,
                               memberType: memberType
                             ));
-                            Navigator.pushNamed(context, '/home');
+
+                            if (memberType == MemberType.Spectator) {
+                              Navigator.pushNamed(context, '/bidder_home');
+                            }
+                            else {
+                              Navigator.pushNamed(context, '/judge_home');
+                            }
                           }
                         },
                         child: Card(
                           child: TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              if (_formkey.currentState!.validate()) {
+                                String email = _textEmail.text;
+                                String username = _textUsername.text;
+                                String password = _textPassword.text;
+                                String passwordConfirm = _textPasswordConfirm.text;
+
+                                // Profile? foundUser = findProfileByUsername(username);
+
+                                Profile p = Profile(
+                                    email: email,
+                                    name: username,
+                                    password: password,
+                                    memberType: memberType
+                                );
+
+                                Globals().addProfile(p);
+
+                                Globals().login(p);
+
+                                if (memberType == MemberType.Spectator) {
+                                  Navigator.pushNamed(context, '/bidder_home');
+                                }
+                                else {
+                                  Navigator.pushNamed(context, '/judge_home');
+                                }
+                              }
+                            },
                             child: const Text(
                               'SIGN UP',
                               style: TextStyle(
