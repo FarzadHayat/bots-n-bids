@@ -53,7 +53,7 @@ class _LoginPageState extends State<LoginPage> {
               key: _formkey,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
                       'Login as ${widget.memberType == MemberType.Spectator ? 'bidder' : 'judge'}',
@@ -61,6 +61,7 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(
                     height: 20.0,
                   ),
+                  const Text('Username', style: kText),
                   TextFormField(
                     controller: _textUsername,
                     style: kTextBlack,
@@ -88,6 +89,7 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(
                     height: 10.0,
                   ),
+                  const Text('Password', style: kText),
                   TextFormField(
                     controller: _textPassword,
                     decoration: kInputStyle,
@@ -129,33 +131,38 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ],
                   ),
-                  ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.resolveWith(
-                          (states) => Colors.white),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                    ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.resolveWith(
+                            (states) => Colors.white),
+                      ),
+                      onPressed: () {
+                        if (_formkey.currentState!.validate()) {
+                          String username = _textUsername.text;
+                          Profile foundUser = findProfileByUsername(username)!;
+
+                          setState(() {
+                              Globals().login(foundUser);
+
+                              if (widget.memberType == MemberType.Spectator) {
+                                Navigator.pushNamed(context, '/bidder_home');
+                              }
+                              else {
+                                Navigator.pushNamed(context, '/judge_home');
+                              }
+                            });
+                          }
+
+                      },
+                      child: const Text(
+                        'LOG IN',
+                        style: kTextBlack
+                      ),
                     ),
-                    onPressed: () {
-                      if (_formkey.currentState!.validate()) {
-                        String username = _textUsername.text;
-                        Profile foundUser = findProfileByUsername(username)!;
-
-                        setState(() {
-                            Globals().login(foundUser);
-
-                            if (widget.memberType == MemberType.Spectator) {
-                              Navigator.pushNamed(context, '/bidder_home');
-                            }
-                            else {
-                              Navigator.pushNamed(context, '/judge_home');
-                            }
-                          });
-                        }
-
-                    },
-                    child: const Text(
-                      'LOG IN',
-                      style: kTextBlack
-                    ),
+        ]
                   ),
                 ],
               ),

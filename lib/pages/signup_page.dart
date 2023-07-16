@@ -56,7 +56,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 key: _formkey,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     const Text('New Profile', style: kTextBodyHeader),
                     const SizedBox(
@@ -205,36 +205,13 @@ class _SignUpPageState extends State<SignUpPage> {
                         ),
                       ],
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                      child: GestureDetector(
-                        onTap: () {
-                          if (_formkey.currentState!.validate()) {
-                            String email = _textEmail.text;
-                            String username = _textUsername.text;
-                            String password = _textPassword.text;
-                            String passwordConfirm = _textPasswordConfirm.text;
-
-                            // Profile? foundUser = findProfileByUsername(username);
-
-                            Globals().addProfile(Profile(
-                              email: email,
-                              name: username,
-                              password: password,
-                              memberType: memberType
-                            ));
-
-                            if (memberType == MemberType.Spectator) {
-                              Navigator.pushNamed(context, '/bidder_home');
-                            }
-                            else {
-                              Navigator.pushNamed(context, '/judge_home');
-                            }
-                          }
-                        },
-                        child: Card(
-                          child: TextButton(
-                            onPressed: () {
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                          child: GestureDetector(
+                            onTap: () {
                               if (_formkey.currentState!.validate()) {
                                 String email = _textEmail.text;
                                 String username = _textUsername.text;
@@ -243,16 +220,12 @@ class _SignUpPageState extends State<SignUpPage> {
 
                                 // Profile? foundUser = findProfileByUsername(username);
 
-                                Profile p = Profile(
-                                    email: email,
-                                    name: username,
-                                    password: password,
-                                    memberType: memberType
-                                );
-
-                                Globals().addProfile(p);
-
-                                Globals().login(p);
+                                Globals().addProfile(Profile(
+                                  email: email,
+                                  name: username,
+                                  password: password,
+                                  memberType: memberType
+                                ));
 
                                 if (memberType == MemberType.Spectator) {
                                   Navigator.pushNamed(context, '/bidder_home');
@@ -262,13 +235,45 @@ class _SignUpPageState extends State<SignUpPage> {
                                 }
                               }
                             },
-                            child: const Text(
-                              'SIGN UP',
-                              style: kTextBlack,
+                            child: Card(
+                              child: TextButton(
+                                onPressed: () {
+                                  if (_formkey.currentState!.validate()) {
+                                    String email = _textEmail.text;
+                                    String username = _textUsername.text;
+                                    String password = _textPassword.text;
+                                    String passwordConfirm = _textPasswordConfirm.text;
+
+                                    // Profile? foundUser = findProfileByUsername(username);
+
+                                    Profile p = Profile(
+                                        email: email,
+                                        name: username,
+                                        password: password,
+                                        memberType: memberType
+                                    );
+
+                                    Globals().addProfile(p);
+
+                                    Globals().login(p);
+
+                                    if (memberType == MemberType.Spectator) {
+                                      Navigator.pushNamed(context, '/bidder_home');
+                                    }
+                                    else {
+                                      Navigator.pushNamed(context, '/judge_home');
+                                    }
+                                  }
+                                },
+                                child: const Text(
+                                  'SIGN UP',
+                                  style: kTextBlack,
+                                ),
+                              ),
                             ),
                           ),
                         ),
-                      ),
+                      ],
                     ),
                   ],
                 ),
