@@ -17,7 +17,9 @@ final _formkey = GlobalKey<FormState>();
 
 Profile? findProfileByUsername(String username) {
   try {
-    return Globals().getProfiles().firstWhere((profile) => profile.name == username);
+    return Globals()
+        .getProfiles()
+        .firstWhere((profile) => profile.name == username);
   } catch (e) {
     return null;
   }
@@ -73,15 +75,12 @@ class _LoginPageState extends State<LoginPage> {
 
                       if (value == null || value.isEmpty) {
                         return "Username required!";
-                      }
-                      else if (foundUser == null) {
+                      } else if (foundUser == null) {
                         return "Username or Password is incorrect";
-                      }
-                      else if (foundUser.password != password ||
-                      widget.memberType == foundUser.memberType) {
+                      } else if (foundUser.password != password ||
+                          widget.memberType == foundUser.memberType) {
                         return "Username or Password is incorrect";
-                      }
-                      else {
+                      } else {
                         return null;
                       }
                     },
@@ -111,7 +110,8 @@ class _LoginPageState extends State<LoginPage> {
                           Checkbox(
                             value: remember,
                             checkColor: Colors.white,
-                            fillColor: MaterialStateProperty.all<Color>(Colors.white),
+                            fillColor:
+                                MaterialStateProperty.all<Color>(Colors.white),
                             onChanged: (bool? value) {
                               setState(() {
                                 remember = value!;
@@ -131,9 +131,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ],
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
+                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                     ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.resolveWith(
@@ -145,25 +143,19 @@ class _LoginPageState extends State<LoginPage> {
                           Profile foundUser = findProfileByUsername(username)!;
 
                           setState(() {
-                              Globals().login(foundUser);
+                            Globals().login(foundUser);
 
-                              if (widget.memberType == MemberType.Spectator) {
-                                Navigator.pushNamed(context, '/bidder_home');
-                              }
-                              else {
-                                Navigator.pushNamed(context, '/judge_home');
-                              }
-                            });
-                          }
-
+                            if (widget.memberType == MemberType.Spectator) {
+                              Navigator.pushNamed(context, '/bidder_home');
+                            } else {
+                              Navigator.pushNamed(context, '/judge_home');
+                            }
+                          });
+                        }
                       },
-                      child: const Text(
-                        'LOG IN',
-                        style: kTextBlack
-                      ),
+                      child: const Text('LOG IN', style: kTextBlack),
                     ),
-        ]
-                  ),
+                  ]),
                 ],
               ),
             ),

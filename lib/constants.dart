@@ -22,7 +22,7 @@ const kTextBlack = TextStyle(
 const kInputStyle = InputDecoration(fillColor: Colors.white, filled: true);
 
 const kTextPenaltyEntry = TextStyle(
-  fontSize: 16.0,
+  fontSize: 14.0,
   fontFamily: 'Tektur',
   color: Colors.white,
   fontWeight: FontWeight.bold,

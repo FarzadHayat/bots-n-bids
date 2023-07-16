@@ -45,96 +45,96 @@ class _MarksheetPageState extends State<MarksheetPage> {
       decoration: const BoxDecoration(
         color: kPrimaryColor,
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Expanded(
-            child: Padding(
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Padding(
               padding: const EdgeInsets.symmetric(vertical: 10.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: penalties,
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text('TEAM NAME', style: kTextPenaltyEntry),
-                SizedBox(
-                  width: 200.0,
-                  child: TextField(
-                    controller: _teamNameController,
-                    onChanged: (value) {
-                      // Update the value whenever the text changes
-                      setState(() {
-                        _teamNameValue = value;
-                      });
-                    },
-                    decoration: const InputDecoration(
-                      hintText: 'Enter your team name',
-                      border: OutlineInputBorder(),
-                      filled: true,
-                      fillColor: Colors.white,
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text('TEAM NAME', style: kTextPenaltyEntry),
+                  SizedBox(
+                    width: 200.0,
+                    child: TextField(
+                      controller: _teamNameController,
+                      onChanged: (value) {
+                        // Update the value whenever the text changes
+                        setState(() {
+                          _teamNameValue = value;
+                        });
+                      },
+                      decoration: const InputDecoration(
+                        hintText: 'Enter your team name',
+                        border: OutlineInputBorder(),
+                        filled: true,
+                        fillColor: Colors.white,
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text('TIME (seconds)', style: kTextPenaltyEntry),
-                SizedBox(
-                  width: 200.0,
-                  child: TextField(
-                    controller: _timeController,
-                    onChanged: (value) {
-                      // Update the value whenever the text changes
-                      setState(() {
-                        _timeValue = value;
-                      });
-                    },
-                    keyboardType: TextInputType.number,
-                    inputFormatters: [
-                      FilteringTextInputFormatter.digitsOnly,
-                    ],
-                    decoration: const InputDecoration(
-                      hintText: 'Enter your time here',
-                      border: OutlineInputBorder(),
-                      filled: true,
-                      fillColor: Colors.white,
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text('TIME (seconds)', style: kTextPenaltyEntry),
+                  SizedBox(
+                    width: 200.0,
+                    child: TextField(
+                      controller: _timeController,
+                      onChanged: (value) {
+                        // Update the value whenever the text changes
+                        setState(() {
+                          _timeValue = value;
+                        });
+                      },
+                      keyboardType: TextInputType.number,
+                      inputFormatters: [
+                        FilteringTextInputFormatter.digitsOnly,
+                      ],
+                      decoration: const InputDecoration(
+                        hintText: 'Enter your time here',
+                        border: OutlineInputBorder(),
+                        filled: true,
+                        fillColor: Colors.white,
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: 8.0,
-              horizontal: 120.0,
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                vertical: 8.0,
+                horizontal: 80.0,
+              ),
+              child: ReusableButton(
+                onPress: () {
+                  setState(() {
+                    // Team team = Team(_teamNameValue, []);
+                    // team.addLap(
+                    //     timeInSeconds: int.parse(_timeValue),
+                    //     penalties: penalties);
+                    // Globals().teams.add(team);
+                  });
+                },
+                text: 'SUBMIT SCORE',
+              ),
             ),
-            child: ReusableButton(
-              onPress: () {
-                setState(() {
-                  // Team team = Team(_teamNameValue, []);
-                  // team.addLap(
-                  //     timeInSeconds: int.parse(_timeValue),
-                  //     penalties: penalties);
-                  // Globals().teams.add(team);
-                });
-              },
-              text: 'SUBMIT SCORE',
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
