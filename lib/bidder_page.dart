@@ -1,11 +1,14 @@
-import 'package:bots_n_bids/profile_tab.dart';
-import 'package:bots_n_bids/scoreboard_tab.dart';
-import 'package:bots_n_bids/signup_page.dart';
+import 'package:bots_n_bids/tabs/profile_tab.dart';
+import 'package:bots_n_bids/tabs/scoreboard_tab.dart';
+import 'package:bots_n_bids/pages/signup_page.dart';
+import 'package:bots_n_bids/tabs/profile_tab.dart';
+import 'package:bots_n_bids/tabs/scoreboard_tab.dart';
 import 'package:flutter/material.dart';
 
+import 'data/profile.dart';
 import 'place_bids_tab.dart';
 import 'constants.dart';
-import 'marksheet_tab.dart';
+import 'tabs/marksheet_tab.dart';
 
 class BidderPage extends StatefulWidget {
   const BidderPage({super.key});
@@ -28,7 +31,7 @@ class _BidderPageState extends State<BidderPage> {
       body: IndexedStack(
         index: _currentIndex,
         children: const [
-          ProfilePage(memberType: Member.Spectator),
+          ProfilePage(memberType: MemberType.Spectator),
           PlaceBidsTab(),
           ScoreboardPage(),
         ],
