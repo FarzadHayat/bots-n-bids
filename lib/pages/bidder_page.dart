@@ -5,10 +5,10 @@ import 'package:bots_n_bids/tabs/profile_tab.dart';
 import 'package:bots_n_bids/tabs/scoreboard_tab.dart';
 import 'package:flutter/material.dart';
 
-import 'data/profile.dart';
-import 'place_bids_tab.dart';
-import 'constants.dart';
-import 'tabs/marksheet_tab.dart';
+import '../data/profile.dart';
+import '../tabs/place_bids_tab.dart';
+import '../constants.dart';
+import '../tabs/marksheet_tab.dart';
 
 class BidderPage extends StatefulWidget {
   const BidderPage({super.key});

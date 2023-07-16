@@ -4,7 +4,7 @@ import 'package:bots_n_bids/data/team.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'globals.dart';
+import '../globals.dart';
 
 class PlaceBidsTab extends StatefulWidget {
   const PlaceBidsTab({super.key});
@@ -20,7 +20,7 @@ class _PlaceBidsTabState extends State<PlaceBidsTab> {
       decoration: const BoxDecoration(
         color: kPrimaryColor,
         image: DecorationImage(
-          image: AssetImage('assets/images/bidding.jpg'),
+          image: AssetImage('assets/images/place_bids.jpg'),
           fit: BoxFit.cover,
         ),
       ),
