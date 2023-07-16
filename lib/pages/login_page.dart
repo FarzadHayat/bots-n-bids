@@ -76,9 +76,10 @@ class _LoginPageState extends State<LoginPage> {
                       if (value == null || value.isEmpty) {
                         return "Username required!";
                       } else if (foundUser == null) {
+                        print('no user exists');
                         return "Username or Password is incorrect";
                       } else if (foundUser.password != password ||
-                          widget.memberType == foundUser.memberType) {
+                          widget.memberType != foundUser.memberType) {
                         return "Username or Password is incorrect";
                       } else {
                         return null;

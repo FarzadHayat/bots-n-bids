@@ -13,12 +13,13 @@ class Globals {
 
   List<Profile> _profiles = [
     Profile(
-        memberType: MemberType.Spectator, email: 'a', name: 'a', password: 'a')
+        memberType: MemberType.Spectator, email: 'a', name: 'a', password: 'a'),
+    Profile(memberType: MemberType.Judge, email: 'b', name: 'b', password: 'b'),
   ];
   List<Team> teams = [
     Team(
       'Apples',
-      '1:24',
+      '0:47',
     ),
     Team(
       'Oranges',
@@ -26,7 +27,7 @@ class Globals {
     ),
     Team(
       'Bananas',
-      '0:56',
+      '1:13',
     ),
     Team(
       'Cherries',
