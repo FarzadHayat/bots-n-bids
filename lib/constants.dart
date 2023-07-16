@@ -13,6 +13,17 @@ const kText = TextStyle(
   fontFamily: 'Tektur',
 );
 
+const kTextBlack = TextStyle(
+  fontSize: 18.0,
+  color: Colors.black,
+  fontFamily: 'Tektur',
+);
+
+const kInputStyle = InputDecoration(
+  fillColor: Colors.white,
+  filled: true
+);
+
 const kTextPenaltyEntry = TextStyle(
   fontSize: 16.0,
   fontFamily: 'Tektur',
