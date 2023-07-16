@@ -6,9 +6,6 @@ import 'pages/home_page.dart';
 import 'pages/signup_page.dart';
 import 'pages/welcome_page.dart';
 import 'pages/login_page.dart';
-import 'pages/home_page.dart';
-import 'pages/signup_page.dart';
-import 'pages/welcome_page.dart';
 
 void main() {
   runApp(const BotsNBids());

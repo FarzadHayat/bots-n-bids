@@ -75,35 +75,19 @@ class _ProfilePageState extends State<ProfilePage> {
             Visibility(
               visible: (widget.memberType == MemberType.Spectator),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Row(
-                    children: [
-                      Image.asset(
-                        'assets/icons/points.png',
-                        width: 50.0,
-                        height: 50.0,
-                      ), // Replace with your desired icon
-                      const SizedBox(
-                          width:
-                              8.0), // Adjust the spacing between the icon and the text
-                      Text(
-                        '${profile.coins}', // Convert the int variable to a String using string interpolation
-                        style: kText,
-                      ),
-                    ],
-                  ),
-                  ReusableButton(
-                    text: 'View bids',
-                    onPress: () {
-                      Navigator.pop(context);
-                      Navigator.pop(context);
-                    },
-                    icon: Image.asset(
-                      'assets/icons/bids.png',
-                      width: 50.0,
-                      height: 50.0,
-                    ),
+                  Image.asset(
+                    'assets/icons/points.png',
+                    width: 50.0,
+                    height: 50.0,
+                  ), // Replace with your desired icon
+                  const SizedBox(
+                      width:
+                          8.0), // Adjust the spacing between the icon and the text
+                  Text(
+                    '${profile.coins}', // Convert the int variable to a String using string interpolation
+                    style: kText,
                   ),
                 ],
               ),
