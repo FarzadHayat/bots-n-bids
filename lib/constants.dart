@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 const kTextBodyHeader = TextStyle(
-  fontSize: 40.0,
+  fontSize: 30.0,
   fontFamily: 'Tektur',
   color: Colors.white,
   fontWeight: FontWeight.bold,
@@ -19,10 +19,7 @@ const kTextBlack = TextStyle(
   fontFamily: 'Tektur',
 );
 
-const kInputStyle = InputDecoration(
-  fillColor: Colors.white,
-  filled: true
-);
+const kInputStyle = InputDecoration(fillColor: Colors.white, filled: true);
 
 const kTextPenaltyEntry = TextStyle(
   fontSize: 16.0,

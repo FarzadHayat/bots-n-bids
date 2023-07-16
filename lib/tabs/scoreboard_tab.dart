@@ -12,7 +12,7 @@ class ScoreboardPage extends StatefulWidget {
 }
 
 class _ScoreboardPageState extends State<ScoreboardPage> {
-  List<Team> teams = Globals().getTeams();
+  List<Team> teams = Globals().teams;
 
   @override
   Widget build(BuildContext context) {
@@ -44,8 +44,7 @@ class _ScoreboardPageState extends State<ScoreboardPage> {
                   leading: Text('${index + 1}',
                       style: kTextBodyHeader.copyWith(color: Colors.amber)),
                   title: Text(competitor.name, style: kText),
-                  trailing: Text('Lap Time: ${competitor.getLapTimeAsString()}',
-                      style: kText),
+                  trailing: Text('Lap Time: ${competitor.time}', style: kText),
                 );
               },
             ),

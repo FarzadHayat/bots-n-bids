@@ -13,13 +13,26 @@ class Globals {
 
   List<Profile> _profiles = [
     Profile(
-      memberType: MemberType.Spectator,
-      email: 'a',
-      name: 'a',
-      password: 'a'
-    )
+        memberType: MemberType.Spectator, email: 'a', name: 'a', password: 'a')
   ];
-  List<Team> _teams = [];
+  List<Team> teams = [
+    Team(
+      'Apples',
+      '1:24',
+    ),
+    Team(
+      'Oranges',
+      '1:09',
+    ),
+    Team(
+      'Bananas',
+      '0:56',
+    ),
+    Team(
+      'Cherries',
+      '1:46',
+    ),
+  ];
 
   Profile currentProfile = Profile(
     name: 'John Doe',
@@ -30,11 +43,11 @@ class Globals {
   bool isLoggedIn = false;
 
   List<Team> getTeams() {
-    return _teams;
+    return teams;
   }
 
   void addTeam(Team team) {
-    _teams.add(team);
+    teams.add(team);
   }
 
   void login(Profile profile) {

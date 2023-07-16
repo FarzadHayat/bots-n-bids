@@ -31,9 +31,12 @@ class _MarksheetPageState extends State<MarksheetPage> {
   @override
   void dispose() {
     // Dispose the controller when the widget is disposed
+    for (PenaltyEntry penalty in penalties) {
+      penalty.count = 0;
+    }
     _timeController.dispose();
     _teamNameController.dispose();
-    super.dispose();
+    // super.dispose();
   }
 
   @override
@@ -121,11 +124,11 @@ class _MarksheetPageState extends State<MarksheetPage> {
             child: ReusableButton(
               onPress: () {
                 setState(() {
-                  Team team = Team(name: _teamNameValue);
-                  team.addLap(
-                      timeInSeconds: int.parse(_timeValue),
-                      penalties: penalties);
-                  Globals().addTeam(team);
+                  // Team team = Team(_teamNameValue, []);
+                  // team.addLap(
+                  //     timeInSeconds: int.parse(_timeValue),
+                  //     penalties: penalties);
+                  // Globals().teams.add(team);
                 });
               },
               text: 'SUBMIT SCORE',
