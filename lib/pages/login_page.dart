@@ -66,6 +66,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   TextFormField(
                     controller: _textUsername,
+                    style: kText,
                     validator: (value) {
                       String username = _textUsername.text;
                       String password = _textPassword.text;
@@ -74,8 +75,10 @@ class _LoginPageState extends State<LoginPage> {
                       if (value == null || value.isEmpty) {
                         return "Username required!";
                       }
-                      else if (foundUser != null &&
-                      foundUser.password == password &&
+                      else if (foundUser == null) {
+                        return "Username or Password is incorrect";
+                      }
+                      else if (foundUser.password != password ||
                       widget.memberType == foundUser.memberType) {
                         return "Username or Password is incorrect";
                       }
@@ -89,6 +92,8 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   TextFormField(
                     controller: _textPassword,
+                    style: kText,
+                    decoration: kInputStyle,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return "Password required!";
