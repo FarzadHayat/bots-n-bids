@@ -1,5 +1,5 @@
 import 'package:bots_n_bids/constants.dart';
-import 'package:bots_n_bids/round_icon_button.dart';
+import 'package:bots_n_bids/components/round_icon_button.dart';
 import 'package:flutter/material.dart';
 
 class PenaltyEntry extends StatefulWidget {

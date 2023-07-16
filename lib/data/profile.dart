@@ -1,4 +1,7 @@
-import 'package:bots_n_bids/signup_page.dart';
+import 'package:bots_n_bids/pages/signup_page.dart';
+
+enum MemberType { Spectator, Judge }
+
 
 class Profile {
   Profile({
@@ -12,5 +15,5 @@ class Profile {
   String name = 'John Doe';
   String email = 'johndoe@something.com';
   String password = 'password';
-  Member memberType = Member.Spectator;
+  MemberType memberType = MemberType.Spectator;
 }

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'login_page.dart';
-import 'home_page.dart';
-import 'signup_page.dart';
-import 'welcome_page.dart';
+import 'pages/login_page.dart';
+import 'pages/home_page.dart';
+import 'pages/signup_page.dart';
+import 'pages/welcome_page.dart';
 
 void main() {
   runApp(const BotsNBids());

@@ -1,10 +1,10 @@
 import 'package:bots_n_bids/constants.dart';
-import 'package:bots_n_bids/penalty_entry.dart';
-import 'package:bots_n_bids/team.dart';
+import 'package:bots_n_bids/components/penalty_entry.dart';
+import 'package:bots_n_bids/data/team.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'globals.dart';
+import '../database.dart';
 
 class MarksheetPage extends StatefulWidget {
   const MarksheetPage({super.key});

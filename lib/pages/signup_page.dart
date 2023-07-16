@@ -1,7 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'constants.dart';
+import '../constants.dart';
+import '../data/profile.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -10,11 +11,9 @@ class SignUpPage extends StatefulWidget {
   State<SignUpPage> createState() => _SignUpPageState();
 }
 
-enum Member { Spectator, Judge }
-
 class _SignUpPageState extends State<SignUpPage> {
   bool remember = false;
-  Member? member = Member.Spectator;
+  MemberType? member = MemberType.Spectator;
 
   @override
   Widget build(BuildContext context) {
@@ -57,10 +56,10 @@ class _SignUpPageState extends State<SignUpPage> {
                       Expanded(
                         child: ListTile(
                           title: Text('Viewer'),
-                          leading: Radio<Member>(
-                            value: Member.Spectator,
+                          leading: Radio<MemberType>(
+                            value: MemberType.Spectator,
                             groupValue: member,
-                            onChanged: (Member? value) {
+                            onChanged: (MemberType? value) {
                               setState(() {
                                 member = value;
                               });
@@ -71,10 +70,10 @@ class _SignUpPageState extends State<SignUpPage> {
                       Expanded(
                         child: ListTile(
                           title: Text('Judge'),
-                          leading: Radio<Member>(
-                            value: Member.Judge,
+                          leading: Radio<MemberType>(
+                            value: MemberType.Judge,
                             groupValue: member,
-                            onChanged: (Member? value) {
+                            onChanged: (MemberType? value) {
                               setState(() {
                                 member = value;
                               });
@@ -158,6 +157,9 @@ class _SignUpPageState extends State<SignUpPage> {
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: GestureDetector(
                       onTap: () {
+                        setState(() {
+
+                        });
                         Navigator.pushNamed(context, '/home');
                       },
                       child: Card(
