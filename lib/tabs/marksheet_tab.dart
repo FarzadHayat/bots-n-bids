@@ -1,8 +1,6 @@
 import 'package:bots_n_bids/constants.dart';
 import 'package:bots_n_bids/components/penalty_entry.dart';
-import 'package:bots_n_bids/reusable_button.dart';
-import 'package:bots_n_bids/data/team.dart';
-import 'package:bots_n_bids/components/penalty_entry.dart';
+import 'package:bots_n_bids/components/reusable_button.dart';
 import 'package:bots_n_bids/data/team.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

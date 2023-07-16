@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'bidder_page.dart';
+import 'pages/bidder_page.dart';
 import 'data/profile.dart';
 import 'pages/home_page.dart';
 import 'pages/signup_page.dart';

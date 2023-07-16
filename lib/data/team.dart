@@ -1,7 +1,5 @@
 import 'package:bots_n_bids/components/penalty_entry.dart';
 
-import 'dart:math';
-
 class Team {
   Team({required this.name});
 
@@ -14,7 +12,7 @@ class Team {
   }) {
     int totalTime = timeInSeconds;
     for (PenaltyEntry penalty in penalties) {
-      totalTime += penalty.score;
+      totalTime += penalty.count * penalty.increment;
     }
     _lapTimes.add(totalTime);
   }

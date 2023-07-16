@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class PenaltyEntry extends StatefulWidget {
   final String label;
-  int score = 0;
+  int count = 0;
   final int increment;
 
   PenaltyEntry({
@@ -24,7 +24,7 @@ class _PenaltyEntryState extends State<PenaltyEntry> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          widget.label,
+          '${widget.label} (${widget.increment >= 0 ? '+${widget.increment}' : widget.increment})',
           style: kTextPenaltyEntry,
         ),
         Row(
@@ -32,9 +32,9 @@ class _PenaltyEntryState extends State<PenaltyEntry> {
             RoundIconButton(
               icon: Icons.remove,
               onPress: () {
-                if (widget.score > 0) {
+                if (widget.count > 0) {
                   setState(() {
-                    widget.score -= widget.increment;
+                    widget.count--;
                   });
                 }
               },
@@ -43,7 +43,7 @@ class _PenaltyEntryState extends State<PenaltyEntry> {
               width: 10.0,
             ),
             Text(
-              widget.score.toString(),
+              widget.count.toString(),
               style: kTextPenaltyEntry,
             ),
             const SizedBox(
@@ -53,7 +53,7 @@ class _PenaltyEntryState extends State<PenaltyEntry> {
               icon: Icons.add,
               onPress: () {
                 setState(() {
-                  widget.score += widget.increment;
+                  widget.count++;
                 });
               },
             ),

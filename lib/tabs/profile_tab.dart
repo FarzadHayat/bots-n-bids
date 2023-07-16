@@ -1,5 +1,5 @@
 import 'package:bots_n_bids/data/profile.dart';
-import 'package:bots_n_bids/reusable_button.dart';
+import 'package:bots_n_bids/components/reusable_button.dart';
 import 'package:bots_n_bids/pages/signup_page.dart';
 import 'package:bots_n_bids/data/profile.dart';
 import 'package:bots_n_bids/pages/signup_page.dart';
