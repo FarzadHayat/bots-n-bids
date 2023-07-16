@@ -27,5 +27,6 @@ class Globals {
 
   void addTeam(Team team) {
     teams.add(team);
+    teams.sort((a, b) => a.getBestLapTime().compareTo(b.getBestLapTime()));
   }
 }

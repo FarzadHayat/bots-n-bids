@@ -1,9 +1,15 @@
+import 'package:bots_n_bids/signup_page.dart';
 import 'package:flutter/material.dart';
 
 import 'constants.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+  const LoginPage({
+    super.key,
+    required this.memberType,
+  });
+
+  final Member memberType;
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -40,7 +46,9 @@ class _LoginPageState extends State<LoginPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                const Text('Login', style: kTextBodyHeader),
+                Text(
+                    'Login as ${widget.memberType == Member.Spectator ? 'bidder' : 'judge'}',
+                    style: kTextBodyHeader),
                 const SizedBox(
                   height: 20.0,
                 ),
@@ -96,7 +104,11 @@ class _LoginPageState extends State<LoginPage> {
                         (states) => Colors.white),
                   ),
                   onPressed: () {
-                    Navigator.pushNamed(context, '/home');
+                    if (widget.memberType == Member.Spectator) {
+                      Navigator.pushNamed(context, '/bidder_home');
+                    } else {
+                      Navigator.pushNamed(context, '/judge_home');
+                    }
                   },
                   child: const Text(
                     'LOG IN',

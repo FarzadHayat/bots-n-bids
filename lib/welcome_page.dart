@@ -41,9 +41,7 @@ class _WelcomePageState extends State<WelcomePage> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 const Text('Hi!', style: kTextBodyHeader),
-                const SizedBox(
-                  height: 20.0
-                ),
+                const SizedBox(height: 20.0),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -54,7 +52,7 @@ class _WelcomePageState extends State<WelcomePage> {
                             (states) => Colors.white),
                       ),
                       onPressed: () {
-                        Navigator.pushNamed(context, '/login');
+                        Navigator.pushNamed(context, '/bidder_login');
                       },
                       child: const Text(
                         'LOG IN AS VIEWER',
@@ -69,10 +67,10 @@ class _WelcomePageState extends State<WelcomePage> {
                     ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.resolveWith(
-                                (states) => Colors.white),
+                            (states) => Colors.white),
                       ),
                       onPressed: () {
-                        Navigator.pushNamed(context, '/login');
+                        Navigator.pushNamed(context, '/judge_login');
                       },
                       child: const Text(
                         'LOG IN AS JUDGE',
@@ -89,7 +87,7 @@ class _WelcomePageState extends State<WelcomePage> {
                 ElevatedButton(
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.resolveWith(
-                            (states) => Colors.white),
+                        (states) => Colors.white),
                   ),
                   onPressed: () {
                     Navigator.pushNamed(context, '/signup');

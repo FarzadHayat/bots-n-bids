@@ -3,17 +3,18 @@ import 'package:bots_n_bids/scoreboard_tab.dart';
 import 'package:bots_n_bids/signup_page.dart';
 import 'package:flutter/material.dart';
 
+import 'place_bids_tab.dart';
 import 'constants.dart';
 import 'marksheet_tab.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class BidderPage extends StatefulWidget {
+  const BidderPage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<BidderPage> createState() => _BidderPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _BidderPageState extends State<BidderPage> {
   int _currentIndex = 0;
 
   @override
@@ -27,8 +28,8 @@ class _HomePageState extends State<HomePage> {
       body: IndexedStack(
         index: _currentIndex,
         children: const [
-          ProfilePage(memberType: Member.Judge),
-          MarksheetPage(),
+          ProfilePage(memberType: Member.Spectator),
+          PlaceBidsTab(),
           ScoreboardPage(),
         ],
       ),
@@ -53,11 +54,11 @@ class _HomePageState extends State<HomePage> {
           ),
           BottomNavigationBarItem(
             icon: Image.asset(
-              'assets/icons/marksheet.png',
+              'assets/icons/bids.png',
               width: 50.0,
               height: 50.0,
             ),
-            label: 'Marksheet',
+            label: 'Place bids',
           ),
           BottomNavigationBarItem(
             icon: Image.asset(

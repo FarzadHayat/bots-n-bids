@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'bidder_page.dart';
 import 'login_page.dart';
 import 'home_page.dart';
 import 'signup_page.dart';
@@ -16,12 +17,19 @@ class BotsNBids extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Bots \'n Babes',
       routes: {
         '/welcome': (context) => const WelcomePage(),
-        '/login': (context) => const LoginPage(),
+        '/bidder_login': (context) => const LoginPage(
+              memberType: Member.Spectator,
+            ),
+        '/judge_login': (context) => const LoginPage(
+              memberType: Member.Judge,
+            ),
         '/signup': (context) => const SignUpPage(),
-        '/home': (context) => const HomePage(),
+        '/bidder_home': (context) => const BidderPage(),
+        '/judge_home': (context) => const HomePage(),
       },
       initialRoute: '/welcome',
     );

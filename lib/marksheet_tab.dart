@@ -1,5 +1,6 @@
 import 'package:bots_n_bids/constants.dart';
 import 'package:bots_n_bids/penalty_entry.dart';
+import 'package:bots_n_bids/reusable_button.dart';
 import 'package:bots_n_bids/team.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -117,12 +118,8 @@ class _MarksheetPageState extends State<MarksheetPage> {
               vertical: 8.0,
               horizontal: 120.0,
             ),
-            child: ElevatedButton(
-              style: ButtonStyle(
-                backgroundColor:
-                    MaterialStateProperty.resolveWith((states) => Colors.white),
-              ),
-              onPressed: () {
+            child: ReusableButton(
+              onPress: () {
                 setState(() {
                   Team team = Team(name: _teamNameValue);
                   team.addLap(
@@ -131,12 +128,7 @@ class _MarksheetPageState extends State<MarksheetPage> {
                   Globals().addTeam(team);
                 });
               },
-              child: const Text(
-                'SUBMIT SCORE',
-                style: TextStyle(
-                  color: kPrimaryColor,
-                ),
-              ),
+              text: 'SUBMIT SCORE',
             ),
           ),
         ],
