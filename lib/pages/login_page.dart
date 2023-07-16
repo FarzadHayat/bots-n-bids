@@ -13,6 +13,14 @@ class LoginPage extends StatefulWidget {
 
 final _formkey = GlobalKey<FormState>();
 
+Profile? findProfileByUsername(String username) {
+  try {
+    return Globals().getProfiles().firstWhere((profile) => profile.name == username);
+  } catch (e) {
+    return null;
+  }
+}
+
 class _LoginPageState extends State<LoginPage> {
   bool remember = false;
   TextEditingController _textUsername = TextEditingController();
@@ -109,17 +117,19 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     onPressed: () {
                       if (_formkey.currentState!.validate()) {
-                        // List<Profile> = Globals().
-                        setState(() {
-                          Globals().login(Profile(
-                            name: 'John Roe',
-                            email: 'johnroe@gmail.com',
-                            password: 'password',
-                            memberType: MemberType.Judge,
-                          ));
-                        });
+                        String username = _textUsername.text;
+                        String password = _textPassword.text;
 
-                        Navigator.pushNamed(context, '/home');
+                        Profile? foundUser = findProfileByUsername(username);
+
+                        if (foundUser != null &&
+                            foundUser.password == password) {
+                          setState(() {
+                            Globals().login(foundUser);
+
+                            Navigator.pushNamed(context, '/home');
+                          });
+                        }
                       }
                     },
                     child: const Text(
