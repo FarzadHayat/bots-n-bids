@@ -1,8 +1,8 @@
 import 'package:bots_n_bids/constants.dart';
-import 'package:bots_n_bids/team.dart';
+import 'package:bots_n_bids/data/team.dart';
 import 'package:flutter/material.dart';
 
-import 'globals.dart';
+import '../database.dart';
 
 class ScoreboardPage extends StatefulWidget {
   const ScoreboardPage({super.key});

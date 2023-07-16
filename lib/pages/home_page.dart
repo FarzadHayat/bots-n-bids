@@ -1,10 +1,13 @@
-import 'package:bots_n_bids/profile_tab.dart';
-import 'package:bots_n_bids/scoreboard_tab.dart';
-import 'package:bots_n_bids/signup_page.dart';
+import 'package:bots_n_bids/tabs/profile_tab.dart';
+import 'package:bots_n_bids/tabs/scoreboard_tab.dart';
+import 'package:bots_n_bids/pages/signup_page.dart';
+import 'package:bots_n_bids/tabs/profile_tab.dart';
+import 'package:bots_n_bids/tabs/scoreboard_tab.dart';
 import 'package:flutter/material.dart';
 
-import 'constants.dart';
-import 'marksheet_tab.dart';
+import '../constants.dart';
+import '../data/profile.dart';
+import '../tabs/marksheet_tab.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -27,7 +30,7 @@ class _HomePageState extends State<HomePage> {
       body: IndexedStack(
         index: _currentIndex,
         children: const [
-          ProfilePage(memberType: Member.Judge),
+          ProfilePage(memberType: MemberType.Judge),
           MarksheetPage(),
           ScoreboardPage(),
         ],

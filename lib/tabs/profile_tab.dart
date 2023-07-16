@@ -1,10 +1,12 @@
-import 'package:bots_n_bids/profile.dart';
+import 'package:bots_n_bids/data/profile.dart';
 import 'package:bots_n_bids/reusable_button.dart';
-import 'package:bots_n_bids/signup_page.dart';
+import 'package:bots_n_bids/pages/signup_page.dart';
+import 'package:bots_n_bids/data/profile.dart';
+import 'package:bots_n_bids/pages/signup_page.dart';
 import 'package:flutter/material.dart';
 
-import 'constants.dart';
-import 'globals.dart';
+import '../constants.dart';
+import '../database.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({
@@ -12,17 +14,16 @@ class ProfilePage extends StatefulWidget {
     required this.memberType,
   });
 
-  final Member memberType;
+  final MemberType memberType;
 
   @override
   State<ProfilePage> createState() => _ProfilePageState();
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  Profile profile = Globals().currentProfile;
-
   @override
   Widget build(BuildContext context) {
+    Profile profile = Globals().currentProfile;
     return Container(
       constraints: const BoxConstraints.expand(),
       decoration: const BoxDecoration(
@@ -44,7 +45,7 @@ class _ProfilePageState extends State<ProfilePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-                (profile.memberType == Member.Spectator)
+                (profile.memberType == MemberType.Spectator)
                     ? 'Welcome Viewer!'
                     : 'Welcome Judge!',
                 style: kTextBodyHeader),
@@ -72,7 +73,7 @@ class _ProfilePageState extends State<ProfilePage> {
               height: 10.0,
             ),
             Visibility(
-              visible: (widget.memberType == Member.Spectator),
+              visible: (widget.memberType == MemberType.Spectator),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [

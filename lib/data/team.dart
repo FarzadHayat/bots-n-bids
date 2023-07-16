@@ -1,4 +1,4 @@
-import 'package:bots_n_bids/penalty_entry.dart';
+import 'package:bots_n_bids/components/penalty_entry.dart';
 
 import 'dart:math';
 

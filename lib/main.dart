@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 
 import 'bidder_page.dart';
-import 'login_page.dart';
-import 'home_page.dart';
-import 'signup_page.dart';
-import 'welcome_page.dart';
+import 'data/profile.dart';
+import 'pages/home_page.dart';
+import 'pages/signup_page.dart';
+import 'pages/welcome_page.dart';
+import 'pages/login_page.dart';
+import 'pages/home_page.dart';
+import 'pages/signup_page.dart';
+import 'pages/welcome_page.dart';
 
 void main() {
   runApp(const BotsNBids());
@@ -22,10 +26,10 @@ class BotsNBids extends StatelessWidget {
       routes: {
         '/welcome': (context) => const WelcomePage(),
         '/bidder_login': (context) => const LoginPage(
-              memberType: Member.Spectator,
+              memberType: MemberType.Spectator,
             ),
         '/judge_login': (context) => const LoginPage(
-              memberType: Member.Judge,
+              memberType: MemberType.Judge,
             ),
         '/signup': (context) => const SignUpPage(),
         '/bidder_home': (context) => const BidderPage(),
