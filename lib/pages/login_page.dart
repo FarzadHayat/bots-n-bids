@@ -5,7 +5,9 @@ import '../data/profile.dart';
 import '../database.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+  const LoginPage({super.key, required this.memberType});
+
+  final MemberType memberType;
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -56,7 +58,9 @@ class _LoginPageState extends State<LoginPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  const Text('Login', style: kTextBodyHeader),
+                  Text(
+                      'Login as ${widget.memberType == MemberType.Spectator ? 'bidder' : 'judge'}',
+                      style: kTextBodyHeader),
                   const SizedBox(
                     height: 20.0,
                   ),
@@ -65,8 +69,7 @@ class _LoginPageState extends State<LoginPage> {
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return "Username required!";
-                      }
-                      else {
+                      } else {
                         return null;
                       }
                     },
@@ -79,8 +82,7 @@ class _LoginPageState extends State<LoginPage> {
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return "Password required!";
-                      }
-                      else {
+                      } else {
                         return null;
                       }
                     },

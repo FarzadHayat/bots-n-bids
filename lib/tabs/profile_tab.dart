@@ -1,4 +1,7 @@
 import 'package:bots_n_bids/data/profile.dart';
+import 'package:bots_n_bids/reusable_button.dart';
+import 'package:bots_n_bids/pages/signup_page.dart';
+import 'package:bots_n_bids/data/profile.dart';
 import 'package:bots_n_bids/pages/signup_page.dart';
 import 'package:flutter/material.dart';
 
@@ -6,14 +9,18 @@ import '../constants.dart';
 import '../database.dart';
 
 class ProfilePage extends StatefulWidget {
-  const ProfilePage({super.key});
+  const ProfilePage({
+    super.key,
+    required this.memberType,
+  });
+
+  final MemberType memberType;
 
   @override
   State<ProfilePage> createState() => _ProfilePageState();
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-
   @override
   Widget build(BuildContext context) {
     Profile profile = Globals().currentProfile;
@@ -42,117 +49,81 @@ class _ProfilePageState extends State<ProfilePage> {
                     ? 'Welcome Viewer!'
                     : 'Welcome Judge!',
                 style: kTextBodyHeader),
-            SizedBox(
+            const SizedBox(
               height: 10.0,
             ),
             Row(
               children: [
                 const Text('USERNAME:', style: kText),
-                SizedBox(width: 5.0),
-                Text('${profile.name}', style: kText),
+                const SizedBox(width: 5.0),
+                Text(profile.name, style: kText),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 10.0,
             ),
             Row(
               children: [
                 const Text('EMAIL:', style: kText),
-                SizedBox(width: 5.0),
-                Text('${profile.email}', style: kText),
+                const SizedBox(width: 5.0),
+                Text(profile.email, style: kText),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 10.0,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Row(
-                  children: [
-                    Image.asset(
-                      'assets/icons/points.png',
-                      width: 50.0,
-                      height: 50.0,
-                    ), // Replace with your desired icon
-                    SizedBox(
-                        width:
-                            8.0), // Adjust the spacing between the icon and the text
-                    Text(
-                      '${profile.coins}', // Convert the int variable to a String using string interpolation
-                      style: kText,
-                    ),
-                  ],
-                ),
-                ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.resolveWith(
-                        (states) => Colors.white),
-                    padding: MaterialStateProperty.resolveWith(
-                      (states) => EdgeInsets.all(
-                        10.0,
-                      ),
-                    ),
-                  ),
-                  onPressed: () {},
-                  child: Row(
+            Visibility(
+              visible: (widget.memberType == MemberType.Spectator),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Row(
                     children: [
                       Image.asset(
-                        'assets/icons/bids.png',
+                        'assets/icons/points.png',
                         width: 50.0,
                         height: 50.0,
-                      ),
-                      const Text(
-                        'View Bids',
-                        style: TextStyle(
-                          color: kPrimaryColor,
-                        ),
+                      ), // Replace with your desired icon
+                      const SizedBox(
+                          width:
+                              8.0), // Adjust the spacing between the icon and the text
+                      Text(
+                        '${profile.coins}', // Convert the int variable to a String using string interpolation
+                        style: kText,
                       ),
                     ],
                   ),
-                ),
-              ],
+                  ReusableButton(
+                    text: 'View bids',
+                    onPress: () {
+                      Navigator.pop(context);
+                      Navigator.pop(context);
+                    },
+                    icon: Image.asset(
+                      'assets/icons/bids.png',
+                      width: 50.0,
+                      height: 50.0,
+                    ),
+                  ),
+                ],
+              ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10.0,
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.resolveWith(
-                        (states) => Colors.white),
-                    padding: MaterialStateProperty.resolveWith(
-                      (states) => EdgeInsets.all(
-                        10.0,
-                      ),
-                    ),
-                  ),
-                  onPressed: () {},
-                  child: const Text(
-                    'View Bids',
-                    style: TextStyle(
-                      color: kPrimaryColor,
-                    ),
-                  ),
+                ReusableButton(
+                  text: 'Edit details',
+                  onPress: () {},
                 ),
-                ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.resolveWith(
-                        (states) => Colors.white),
-                    padding: MaterialStateProperty.resolveWith(
-                      (states) => EdgeInsets.all(
-                        10.0,
-                      ),
-                    ),
-                  ),
-                  onPressed: () {},
-                  child: const Text(
-                    'View Bids',
-                    style: TextStyle(
-                      color: kPrimaryColor,
-                    ),
-                  ),
+                ReusableButton(
+                  text: 'Sign out',
+                  onPress: () {
+                    Navigator.pop(context);
+                    Navigator.pop(context);
+                  },
                 ),
               ],
             ),

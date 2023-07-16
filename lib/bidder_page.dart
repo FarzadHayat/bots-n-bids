@@ -5,18 +5,19 @@ import 'package:bots_n_bids/tabs/profile_tab.dart';
 import 'package:bots_n_bids/tabs/scoreboard_tab.dart';
 import 'package:flutter/material.dart';
 
-import '../constants.dart';
-import '../data/profile.dart';
-import '../tabs/marksheet_tab.dart';
+import 'data/profile.dart';
+import 'place_bids_tab.dart';
+import 'constants.dart';
+import 'tabs/marksheet_tab.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class BidderPage extends StatefulWidget {
+  const BidderPage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<BidderPage> createState() => _BidderPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _BidderPageState extends State<BidderPage> {
   int _currentIndex = 0;
 
   @override
@@ -30,8 +31,8 @@ class _HomePageState extends State<HomePage> {
       body: IndexedStack(
         index: _currentIndex,
         children: const [
-          ProfilePage(memberType: MemberType.Judge),
-          MarksheetPage(),
+          ProfilePage(memberType: MemberType.Spectator),
+          PlaceBidsTab(),
           ScoreboardPage(),
         ],
       ),
@@ -56,11 +57,11 @@ class _HomePageState extends State<HomePage> {
           ),
           BottomNavigationBarItem(
             icon: Image.asset(
-              'assets/icons/marksheet.png',
+              'assets/icons/bids.png',
               width: 50.0,
               height: 50.0,
             ),
-            label: 'Marksheet',
+            label: 'Place bids',
           ),
           BottomNavigationBarItem(
             icon: Image.asset(
