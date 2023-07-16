@@ -36,10 +36,7 @@ class _SignUpPageState extends State<SignUpPage> {
       ),
       body: Container(
         decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/images/wallpaper.jpg'),
-            fit: BoxFit.cover,
-          ),
+          color: kPrimaryColor
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(
@@ -65,14 +62,15 @@ class _SignUpPageState extends State<SignUpPage> {
                     const SizedBox(
                       height: 20.0,
                     ),
-                    Text('Member Type'),
+                    Text('Member Type', style: kText),
                     Row(
                       children: [
                         Expanded(
                           child: ListTile(
-                            title: Text('Viewer'),
+                            title: Text('Viewer', style: kText,),
                             leading: Radio<MemberType>(
                               value: MemberType.Spectator,
+                              fillColor: MaterialStateProperty.all<Color>(Colors.white),
                               groupValue: memberType,
                               onChanged: (MemberType? value) {
                                 setState(() {
@@ -89,9 +87,10 @@ class _SignUpPageState extends State<SignUpPage> {
                         ),
                         Expanded(
                           child: ListTile(
-                            title: Text('Judge'),
+                            title: Text('Judge', style: kText),
                             leading: Radio<MemberType>(
                               value: MemberType.Judge,
+                              fillColor: MaterialStateProperty.all<Color>(Colors.white),
                               groupValue: memberType,
                               onChanged: (MemberType? value) {
                                 setState(() {
@@ -108,9 +107,11 @@ class _SignUpPageState extends State<SignUpPage> {
                         )
                       ],
                     ),
-                    const Text('Email'),
+                    const Text('Email', style: kText),
                     TextFormField(
                       controller: _textEmail,
+                      style: kTextBlack,
+                      decoration: kInputStyle,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return "Email required!";
@@ -123,9 +124,11 @@ class _SignUpPageState extends State<SignUpPage> {
                     const SizedBox(
                       height: 10.0,
                     ),
-                    const Text('Username'),
+                    const Text('Username', style: kText),
                     TextFormField(
                       controller: _textUsername,
+                      style: kTextBlack,
+                      decoration: kInputStyle,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return "Username required!";
@@ -138,9 +141,12 @@ class _SignUpPageState extends State<SignUpPage> {
                     const SizedBox(
                       height: 10.0,
                     ),
-                    const Text('Password'),
+                    const Text('Password', style: kText),
                     TextFormField(
                       controller: _textPassword,
+                      style: kTextBlack,
+                      decoration: kInputStyle,
+                      obscureText: true,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return "Password required!";
@@ -153,9 +159,12 @@ class _SignUpPageState extends State<SignUpPage> {
                     const SizedBox(
                       height: 10.0,
                     ),
-                    const Text('Confirm Password'),
+                    const Text('Confirm Password', style: kText),
                     TextFormField(
                       controller: _textPasswordConfirm,
+                      style: kTextBlack,
+                      decoration: kInputStyle,
+                      obscureText: true,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return "Please enter password again!";
@@ -175,6 +184,8 @@ class _SignUpPageState extends State<SignUpPage> {
                           children: <Widget>[
                             Checkbox(
                               value: remember,
+                              checkColor: Colors.white,
+                              fillColor: MaterialStateProperty.all<Color>(Colors.white),
                               onChanged: (bool? value) {
                                 setState(() {
                                   remember = value!;
@@ -183,12 +194,13 @@ class _SignUpPageState extends State<SignUpPage> {
                             ),
                             const Text(
                               'Remember',
+                              style: kText,
                             ),
                           ],
                         ),
                         const Row(
                           children: <Widget>[
-                            Text('Forgot?'),
+                            Text('Forgot?', style: kText,),
                           ],
                         ),
                       ],
@@ -197,9 +209,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       padding: const EdgeInsets.symmetric(horizontal: 20.0),
                       child: GestureDetector(
                         onTap: () {
-                          print('a');
                           if (_formkey.currentState!.validate()) {
-                            print('b');
                             String email = _textEmail.text;
                             String username = _textUsername.text;
                             String password = _textPassword.text;
@@ -254,9 +264,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             },
                             child: const Text(
                               'SIGN UP',
-                              style: TextStyle(
-                                color: Color(0xFF0f1627),
-                              ),
+                              style: kTextBlack,
                             ),
                           ),
                         ),

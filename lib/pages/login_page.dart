@@ -39,10 +39,7 @@ class _LoginPageState extends State<LoginPage> {
       ),
       body: Container(
         decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/images/wallpaper.jpg'),
-            fit: BoxFit.cover,
-          ),
+          color: kPrimaryColor,
         ),
         child: Container(
           constraints: const BoxConstraints(
@@ -68,7 +65,8 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   TextFormField(
                     controller: _textUsername,
-                    style: kText,
+                    style: kTextBlack,
+                    decoration: kInputStyle,
                     validator: (value) {
                       String username = _textUsername.text;
                       String password = _textPassword.text;
@@ -91,8 +89,9 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   TextFormField(
                     controller: _textPassword,
-                    style: kText,
                     decoration: kInputStyle,
+                    style: kTextBlack,
+                    obscureText: true,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return "Password required!";
@@ -108,6 +107,8 @@ class _LoginPageState extends State<LoginPage> {
                         children: <Widget>[
                           Checkbox(
                             value: remember,
+                            checkColor: Colors.white,
+                            fillColor: MaterialStateProperty.all<Color>(Colors.white),
                             onChanged: (bool? value) {
                               setState(() {
                                 remember = value!;
@@ -116,12 +117,13 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                           const Text(
                             'Remember',
+                            style: kText,
                           ),
                         ],
                       ),
                       const Row(
                         children: <Widget>[
-                          Text('Forgot?'),
+                          Text('Forgot?', style: kText),
                         ],
                       ),
                     ],
@@ -149,9 +151,7 @@ class _LoginPageState extends State<LoginPage> {
                     },
                     child: const Text(
                       'LOG IN',
-                      style: TextStyle(
-                        color: kPrimaryColor,
-                      ),
+                      style: kTextBlack
                     ),
                   ),
                 ],
