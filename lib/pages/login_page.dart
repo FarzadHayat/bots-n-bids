@@ -1,9 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 import '../components/rounded_button.dart';
 import '../constants.dart';
-import '../data/profile.dart';
-import '../database.dart';
+import 'home_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -14,22 +15,78 @@ class LoginPage extends StatefulWidget {
   State<LoginPage> createState() => _LoginPageState();
 }
 
-final _formkey = GlobalKey<FormState>();
-
-Profile? findProfileByUsername(String username) {
-  try {
-    return Globals()
-        .getProfiles()
-        .firstWhere((profile) => profile.name == username);
-  } catch (e) {
-    return null;
-  }
-}
-
 class _LoginPageState extends State<LoginPage> {
+  // create an instance of firebase auth
+  final _auth = FirebaseAuth.instance;
+  // create a global key for the form widget
+  final _formKey = GlobalKey<FormState>();
   bool remember = false;
   late String _email;
   late String _password;
+  bool showSpinner = false;
+
+  Future<void> _signInWithEmailAndPassword(context) async {
+    try {
+      // set the loading state
+      setState(() {
+        showSpinner = true;
+      });
+      UserCredential user =
+          await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: _email,
+        password: _password,
+      );
+      if (user != null) {
+        // navigate to the chat screen
+        Navigator.pushNamed(context, HomePage.id);
+      }
+      // set the loading state
+      setState(() {
+        showSpinner = false;
+      });
+      // Do something when the login is successful
+      print('Login successful: ${user.user?.uid}');
+
+      // Show success snackbar
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Login successful!'),
+          backgroundColor: Colors.green,
+        ),
+      );
+    } on FirebaseAuthException catch (e) {
+      // set the loading state
+      setState(() {
+        showSpinner = false;
+      });
+      if (e.code == 'user-not-found' || e.code == 'wrong-password') {
+        // Show error snackbar for invalid username or password
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Invalid username or password'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      } else {
+        // Show generic error snackbar
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('An error occurred, please try again later'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    } catch (e) {
+      print(e);
+      // Show generic error snackbar
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('An error occurred, please try again later'),
+          backgroundColor: Colors.red,
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,28 +95,26 @@ class _LoginPageState extends State<LoginPage> {
         title: const Text('Login'),
         backgroundColor: kColorForeground,
       ),
-      body: Container(
-        decoration: const BoxDecoration(
-          color: kColorButton,
-        ),
+      body: ModalProgressHUD(
+        inAsyncCall: showSpinner, // set the loading state
         child: Container(
           constraints: const BoxConstraints(
             minWidth: 0,
             minHeight: 0,
           ),
-          decoration: BoxDecoration(
-            color: Colors.grey.withOpacity(0.2),
+          decoration: const BoxDecoration(
+            color: kColorBackground,
           ),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: Form(
-              key: _formkey,
+              key: _formKey,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   const Text('Email', style: kTextBody),
-                  TextFormField(
+                  TextField(
                     textAlign: TextAlign.center,
                     keyboardType: TextInputType.emailAddress,
                     onChanged: (value) {
@@ -69,29 +124,12 @@ class _LoginPageState extends State<LoginPage> {
                     decoration: kTextFieldDecoration.copyWith(
                       hintText: 'Enter your email',
                     ),
-                    // validator: (value) {
-                    //   String username = _textEmail.text;
-                    //   String password = _textPassword.text;
-                    //   Profile? foundUser = findProfileByUsername(username);
-                    //
-                    //   if (value == null || value.isEmpty) {
-                    //     return "Username required!";
-                    //   } else if (foundUser == null) {
-                    //     print('no user exists');
-                    //     return "Username or Password is incorrect";
-                    //   } else if (foundUser.password != password ||
-                    //       widget.memberType != foundUser.memberType) {
-                    //     return "Username or Password is incorrect";
-                    //   } else {
-                    //     return null;
-                    //   }
-                    // },
                   ),
                   const SizedBox(
                     height: 10.0,
                   ),
                   const Text('Password', style: kTextBody),
-                  TextFormField(
+                  TextField(
                     textAlign: TextAlign.center,
                     obscureText: true,
                     onChanged: (value) {
@@ -101,13 +139,6 @@ class _LoginPageState extends State<LoginPage> {
                       hintText: 'Enter your password',
                     ),
                     style: kTextBody,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return "Password required!";
-                      } else {
-                        return null;
-                      }
-                    },
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -140,22 +171,32 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   Center(
                     child: RoundedButton(
-                      onPressed: () {
-                        if (_formkey.currentState!.validate()) {
-                          String email = _email;
-                          Profile foundUser = findProfileByUsername(email)!;
-
-                          setState(() {
-                            Globals().login(foundUser);
-
-                            // if (widget.memberType == MemberType.Spectator) {
-                            //   Navigator.pushNamed(context, '/bidder_home');
-                            // } else {
-                            //   Navigator.pushNamed(context, '/judge_home');
-                            // }
-                          });
-                        }
+                      onPressed: () async {
+                        _signInWithEmailAndPassword(context);
                       },
+                      //     () async {
+                      //   // set the loading state
+                      //   setState(() {
+                      //     showSpinner = true;
+                      //   });
+                      //   // login the user using the signInWithEmailAndPassword method
+                      //   try {
+                      //     final user = await _auth.signInWithEmailAndPassword(
+                      //       email: _email,
+                      //       password: _password,
+                      //     );
+                      //     if (user != null) {
+                      //       // navigate to the chat screen
+                      //       Navigator.pushNamed(context, HomePage.id);
+                      //     }
+                      //     // set the loading state
+                      //     setState(() {
+                      //       showSpinner = false;
+                      //     });
+                      //   } catch (e) {
+                      //     print(e);
+                      //   }
+                      // },
                       color: kColorButton,
                       title: 'LOG IN',
                     ),
