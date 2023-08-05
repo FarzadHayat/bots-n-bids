@@ -1,5 +1,3 @@
-import 'package:bots_n_bids/components/penalty_entry.dart';
-
 class Team {
   Team(this.name, this.time);
 

@@ -13,7 +13,7 @@ class _ViewBidsTabState extends State<ViewBidsTab> {
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-        color: kPrimaryColor,
+        color: kColorButton,
         image: DecorationImage(
           image: AssetImage('assets/images/view_bids.jpg'),
           fit: BoxFit.cover,

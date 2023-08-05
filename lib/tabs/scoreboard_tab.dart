@@ -19,7 +19,7 @@ class _ScoreboardPageState extends State<ScoreboardPage> {
     return Container(
       constraints: const BoxConstraints.expand(),
       decoration: const BoxDecoration(
-        color: kPrimaryColor,
+        color: kColorButton,
         image: DecorationImage(
           image: AssetImage('assets/images/scoreboard.jpg'),
           fit: BoxFit.contain,
@@ -30,7 +30,7 @@ class _ScoreboardPageState extends State<ScoreboardPage> {
           const SizedBox(
             height: 20.0,
           ),
-          const Text('Scoreboard', style: kTextBodyHeader),
+          const Text('Scoreboard', style: kTextHeader),
           const SizedBox(
             height: 20.0,
           ),
@@ -42,9 +42,10 @@ class _ScoreboardPageState extends State<ScoreboardPage> {
 
                 return ListTile(
                   leading: Text('${index + 1}',
-                      style: kTextBodyHeader.copyWith(color: Colors.amber)),
-                  title: Text(competitor.name, style: kText),
-                  trailing: Text('Lap Time: ${competitor.time}', style: kText),
+                      style: kTextHeader.copyWith(color: Colors.amber)),
+                  title: Text(competitor.name, style: kTextBody),
+                  trailing:
+                      Text('Lap Time: ${competitor.time}', style: kTextBody),
                 );
               },
             ),

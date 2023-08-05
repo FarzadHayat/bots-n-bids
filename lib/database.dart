@@ -1,5 +1,4 @@
 import 'package:bots_n_bids/data/profile.dart';
-import 'package:bots_n_bids/pages/signup_page.dart';
 import 'package:bots_n_bids/data/team.dart';
 
 class Globals {
@@ -11,7 +10,7 @@ class Globals {
 
   Globals._internal();
 
-  List<Profile> _profiles = [
+  final List<Profile> _profiles = [
     Profile(
         memberType: MemberType.Spectator, email: 'a', name: 'a', password: 'a'),
     Profile(memberType: MemberType.Judge, email: 'b', name: 'b', password: 'b'),

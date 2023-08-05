@@ -1,11 +1,9 @@
 import 'package:bots_n_bids/constants.dart';
 import 'package:bots_n_bids/components/penalty_entry.dart';
-import 'package:bots_n_bids/components/reusable_button.dart';
-import 'package:bots_n_bids/data/team.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../database.dart';
+import '../components/rounded_button.dart';
 
 class MarksheetPage extends StatefulWidget {
   const MarksheetPage({super.key});
@@ -43,7 +41,7 @@ class _MarksheetPageState extends State<MarksheetPage> {
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-        color: kPrimaryColor,
+        color: kColorButton,
       ),
       child: SingleChildScrollView(
         child: Column(
@@ -120,8 +118,8 @@ class _MarksheetPageState extends State<MarksheetPage> {
                 vertical: 8.0,
                 horizontal: 80.0,
               ),
-              child: ReusableButton(
-                onPress: () {
+              child: RoundedButton(
+                onPressed: () {
                   setState(() {
                     // Team team = Team(_teamNameValue, []);
                     // team.addLap(
@@ -130,7 +128,8 @@ class _MarksheetPageState extends State<MarksheetPage> {
                     // Globals().teams.add(team);
                   });
                 },
-                text: 'SUBMIT SCORE',
+                title: 'SUBMIT SCORE',
+                color: kColorButton,
               ),
             ),
           ],

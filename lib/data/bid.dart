@@ -1,5 +1,3 @@
-import 'package:bots_n_bids/pages/signup_page.dart';
-
 import 'profile.dart';
 import 'team.dart';
 

@@ -13,7 +13,7 @@ class _PlaceBidsTabState extends State<PlaceBidsTab> {
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-        color: kPrimaryColor,
+        color: kColorButton,
         image: DecorationImage(
           image: AssetImage('assets/images/place_bids.jpg'),
           fit: BoxFit.cover,

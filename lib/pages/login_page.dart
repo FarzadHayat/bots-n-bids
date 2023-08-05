@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
+import '../components/rounded_button.dart';
 import '../constants.dart';
 import '../data/profile.dart';
 import '../database.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({super.key, required this.memberType});
+  const LoginPage({super.key});
 
-  final MemberType memberType;
+  static const String id = 'login_page';
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -27,19 +28,19 @@ Profile? findProfileByUsername(String username) {
 
 class _LoginPageState extends State<LoginPage> {
   bool remember = false;
-  TextEditingController _textUsername = TextEditingController();
-  TextEditingController _textPassword = TextEditingController();
+  late String _email;
+  late String _password;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Bots \'n Bids'),
-        backgroundColor: kSecondaryColor,
+        title: const Text('Login'),
+        backgroundColor: kColorForeground,
       ),
       body: Container(
         decoration: const BoxDecoration(
-          color: kPrimaryColor,
+          color: kColorButton,
         ),
         child: Container(
           constraints: const BoxConstraints(
@@ -57,44 +58,49 @@ class _LoginPageState extends State<LoginPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text(
-                      'Login as ${widget.memberType == MemberType.Spectator ? 'bidder' : 'judge'}',
-                      style: kTextBodyHeader),
-                  const SizedBox(
-                    height: 20.0,
-                  ),
-                  const Text('Username', style: kText),
+                  const Text('Email', style: kTextBody),
                   TextFormField(
-                    controller: _textUsername,
-                    style: kTextBlack,
-                    decoration: kInputStyle,
-                    validator: (value) {
-                      String username = _textUsername.text;
-                      String password = _textPassword.text;
-                      Profile? foundUser = findProfileByUsername(username);
-
-                      if (value == null || value.isEmpty) {
-                        return "Username required!";
-                      } else if (foundUser == null) {
-                        print('no user exists');
-                        return "Username or Password is incorrect";
-                      } else if (foundUser.password != password ||
-                          widget.memberType != foundUser.memberType) {
-                        return "Username or Password is incorrect";
-                      } else {
-                        return null;
-                      }
+                    textAlign: TextAlign.center,
+                    keyboardType: TextInputType.emailAddress,
+                    onChanged: (value) {
+                      _email = value;
                     },
+                    style: kTextBody,
+                    decoration: kTextFieldDecoration.copyWith(
+                      hintText: 'Enter your email',
+                    ),
+                    // validator: (value) {
+                    //   String username = _textEmail.text;
+                    //   String password = _textPassword.text;
+                    //   Profile? foundUser = findProfileByUsername(username);
+                    //
+                    //   if (value == null || value.isEmpty) {
+                    //     return "Username required!";
+                    //   } else if (foundUser == null) {
+                    //     print('no user exists');
+                    //     return "Username or Password is incorrect";
+                    //   } else if (foundUser.password != password ||
+                    //       widget.memberType != foundUser.memberType) {
+                    //     return "Username or Password is incorrect";
+                    //   } else {
+                    //     return null;
+                    //   }
+                    // },
                   ),
                   const SizedBox(
                     height: 10.0,
                   ),
-                  const Text('Password', style: kText),
+                  const Text('Password', style: kTextBody),
                   TextFormField(
-                    controller: _textPassword,
-                    decoration: kInputStyle,
-                    style: kTextBlack,
+                    textAlign: TextAlign.center,
                     obscureText: true,
+                    onChanged: (value) {
+                      _password = value;
+                    },
+                    decoration: kTextFieldDecoration.copyWith(
+                      hintText: 'Enter your password',
+                    ),
+                    style: kTextBody,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return "Password required!";
@@ -121,42 +127,39 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                           const Text(
                             'Remember',
-                            style: kText,
+                            style: kTextBody,
                           ),
                         ],
                       ),
                       const Row(
                         children: <Widget>[
-                          Text('Forgot?', style: kText),
+                          Text('Forgot?', style: kTextBody),
                         ],
                       ),
                     ],
                   ),
-                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                    ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.resolveWith(
-                            (states) => Colors.white),
-                      ),
+                  Center(
+                    child: RoundedButton(
                       onPressed: () {
                         if (_formkey.currentState!.validate()) {
-                          String username = _textUsername.text;
-                          Profile foundUser = findProfileByUsername(username)!;
+                          String email = _email;
+                          Profile foundUser = findProfileByUsername(email)!;
 
                           setState(() {
                             Globals().login(foundUser);
 
-                            if (widget.memberType == MemberType.Spectator) {
-                              Navigator.pushNamed(context, '/bidder_home');
-                            } else {
-                              Navigator.pushNamed(context, '/judge_home');
-                            }
+                            // if (widget.memberType == MemberType.Spectator) {
+                            //   Navigator.pushNamed(context, '/bidder_home');
+                            // } else {
+                            //   Navigator.pushNamed(context, '/judge_home');
+                            // }
                           });
                         }
                       },
-                      child: const Text('LOG IN', style: kTextBlack),
+                      color: kColorButton,
+                      title: 'LOG IN',
                     ),
-                  ]),
+                  ),
                 ],
               ),
             ),

@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 
 import 'pages/bidder_page.dart';
-import 'data/profile.dart';
 import 'pages/home_page.dart';
 import 'pages/signup_page.dart';
 import 'pages/welcome_page.dart';
 import 'pages/login_page.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const BotsNBids());
 }
 
@@ -19,20 +24,15 @@ class BotsNBids extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Bots \'n Babes',
+      title: 'Bots \'n\' Babes',
       routes: {
-        '/welcome': (context) => const WelcomePage(),
-        '/bidder_login': (context) => const LoginPage(
-              memberType: MemberType.Spectator,
-            ),
-        '/judge_login': (context) => const LoginPage(
-              memberType: MemberType.Judge,
-            ),
-        '/signup': (context) => const SignUpPage(),
-        '/bidder_home': (context) => const BidderPage(),
-        '/judge_home': (context) => const HomePage(),
+        WelcomePage.id: (context) => const WelcomePage(),
+        LoginPage.id: (context) => const LoginPage(),
+        SignupPage.id: (context) => const SignupPage(),
+        BidderPage.id: (context) => const BidderPage(),
+        HomePage.id: (context) => const HomePage(),
       },
-      initialRoute: '/welcome',
+      initialRoute: WelcomePage.id,
     );
   }
 }

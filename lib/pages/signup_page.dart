@@ -1,21 +1,21 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../constants.dart';
 import '../data/profile.dart';
 import '../database.dart';
-import 'login_page.dart';
 
-class SignUpPage extends StatefulWidget {
-  const SignUpPage({super.key});
+class SignupPage extends StatefulWidget {
+  const SignupPage({super.key});
+
+  static const String id = 'signup_page';
 
   @override
-  State<SignUpPage> createState() => _SignUpPageState();
+  State<SignupPage> createState() => _SignupPageState();
 }
 
 final _formkey = GlobalKey<FormState>();
 
-class _SignUpPageState extends State<SignUpPage> {
+class _SignupPageState extends State<SignupPage> {
   bool remember = false;
   MemberType memberType = MemberType.Spectator;
 
@@ -29,10 +29,10 @@ class _SignUpPageState extends State<SignUpPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Bots \'n Bids'),
-        backgroundColor: kSecondaryColor,
+        backgroundColor: kColorForeground,
       ),
       body: Container(
-        decoration: const BoxDecoration(color: kPrimaryColor),
+        decoration: const BoxDecoration(color: kColorButton),
         child: Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: 20.0,
@@ -53,15 +53,15 @@ class _SignUpPageState extends State<SignUpPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    const Text('New Profile', style: kTextBodyHeader),
-                    Text('Member Type', style: kText),
+                    const Text('New Profile', style: kTextHeader),
+                    const Text('Member Type', style: kTextBody),
                     Row(
                       children: [
                         Expanded(
                           child: ListTile(
-                            title: Text(
+                            title: const Text(
                               'Viewer',
-                              style: kText,
+                              style: kTextBody,
                             ),
                             leading: Radio<MemberType>(
                               value: MemberType.Spectator,
@@ -82,7 +82,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         ),
                         Expanded(
                           child: ListTile(
-                            title: Text('Judge', style: kText),
+                            title: const Text('Judge', style: kTextBody),
                             leading: Radio<MemberType>(
                               value: MemberType.Judge,
                               fillColor: MaterialStateProperty.all<Color>(
@@ -102,11 +102,11 @@ class _SignUpPageState extends State<SignUpPage> {
                         )
                       ],
                     ),
-                    const Text('Email', style: kText),
+                    const Text('Email', style: kTextBody),
                     TextFormField(
                       controller: _textEmail,
-                      style: kTextBlack,
-                      decoration: kInputStyle,
+                      style: kTextBody,
+                      decoration: kTextFieldDecoration,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return "Email required!";
@@ -115,11 +115,11 @@ class _SignUpPageState extends State<SignUpPage> {
                         }
                       },
                     ),
-                    const Text('Username', style: kText),
+                    const Text('Username', style: kTextBody),
                     TextFormField(
                       controller: _textUsername,
-                      style: kTextBlack,
-                      decoration: kInputStyle,
+                      style: kTextBody,
+                      decoration: kTextFieldDecoration,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return "Username required!";
@@ -128,11 +128,11 @@ class _SignUpPageState extends State<SignUpPage> {
                         }
                       },
                     ),
-                    const Text('Password', style: kText),
+                    const Text('Password', style: kTextBody),
                     TextFormField(
                       controller: _textPassword,
-                      style: kTextBlack,
-                      decoration: kInputStyle,
+                      style: kTextBody,
+                      decoration: kTextFieldDecoration,
                       obscureText: true,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -142,11 +142,11 @@ class _SignUpPageState extends State<SignUpPage> {
                         }
                       },
                     ),
-                    const Text('Confirm Password', style: kText),
+                    const Text('Confirm Password', style: kTextBody),
                     TextFormField(
                       controller: _textPasswordConfirm,
-                      style: kTextBlack,
-                      decoration: kInputStyle,
+                      style: kTextBody,
+                      decoration: kTextFieldDecoration,
                       obscureText: true,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -176,7 +176,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             ),
                             const Text(
                               'Remember',
-                              style: kText,
+                              style: kTextBody,
                             ),
                           ],
                         ),
@@ -184,7 +184,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           children: <Widget>[
                             Text(
                               'Forgot?',
-                              style: kText,
+                              style: kTextBody,
                             ),
                           ],
                         ),
@@ -252,7 +252,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 },
                                 child: const Text(
                                   'SIGN UP',
-                                  style: kTextBlack,
+                                  style: kTextBody,
                                 ),
                               ),
                             ),

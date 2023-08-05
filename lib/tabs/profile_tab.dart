@@ -1,10 +1,7 @@
 import 'package:bots_n_bids/data/profile.dart';
-import 'package:bots_n_bids/components/reusable_button.dart';
-import 'package:bots_n_bids/pages/signup_page.dart';
-import 'package:bots_n_bids/data/profile.dart';
-import 'package:bots_n_bids/pages/signup_page.dart';
 import 'package:flutter/material.dart';
 
+import '../components/rounded_button.dart';
 import '../constants.dart';
 import '../database.dart';
 
@@ -27,7 +24,7 @@ class _ProfilePageState extends State<ProfilePage> {
     return Container(
       constraints: const BoxConstraints.expand(),
       decoration: const BoxDecoration(
-        color: kPrimaryColor,
+        color: kColorButton,
         image: DecorationImage(
           image: AssetImage('assets/images/judge-profile.jpg'),
           fit: BoxFit.contain,
@@ -48,15 +45,15 @@ class _ProfilePageState extends State<ProfilePage> {
                 (profile.memberType == MemberType.Spectator)
                     ? 'Welcome Viewer!'
                     : 'Welcome Judge!',
-                style: kTextBodyHeader),
+                style: kTextHeader),
             const SizedBox(
               height: 10.0,
             ),
             Row(
               children: [
-                const Text('USERNAME:', style: kText),
+                const Text('USERNAME:', style: kTextBody),
                 const SizedBox(width: 5.0),
-                Text(profile.name, style: kText),
+                Text(profile.name, style: kTextBody),
               ],
             ),
             const SizedBox(
@@ -64,9 +61,9 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
             Row(
               children: [
-                const Text('EMAIL:', style: kText),
+                const Text('EMAIL:', style: kTextBody),
                 const SizedBox(width: 5.0),
-                Text(profile.email, style: kText),
+                Text(profile.email, style: kTextBody),
               ],
             ),
             const SizedBox(
@@ -87,7 +84,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           8.0), // Adjust the spacing between the icon and the text
                   Text(
                     '${profile.coins}', // Convert the int variable to a String using string interpolation
-                    style: kText,
+                    style: kTextBody,
                   ),
                 ],
               ),
@@ -98,16 +95,18 @@ class _ProfilePageState extends State<ProfilePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                ReusableButton(
-                  text: 'Edit details',
-                  onPress: () {},
+                RoundedButton(
+                  title: 'Edit details',
+                  onPressed: () {},
+                  color: kColorButton,
                 ),
-                ReusableButton(
-                  text: 'Sign out',
-                  onPress: () {
+                RoundedButton(
+                  title: 'Sign out',
+                  onPressed: () {
                     Navigator.pop(context);
                     Navigator.pop(context);
                   },
+                  color: kColorButton,
                 ),
               ],
             ),

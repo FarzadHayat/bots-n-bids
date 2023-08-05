@@ -1,7 +1,4 @@
-import 'package:bots_n_bids/pages/signup_page.dart';
-
 enum MemberType { Spectator, Judge }
-
 
 class Profile {
   Profile({

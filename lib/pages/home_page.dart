@@ -1,8 +1,5 @@
 import 'package:bots_n_bids/tabs/profile_tab.dart';
 import 'package:bots_n_bids/tabs/scoreboard_tab.dart';
-import 'package:bots_n_bids/pages/signup_page.dart';
-import 'package:bots_n_bids/tabs/profile_tab.dart';
-import 'package:bots_n_bids/tabs/scoreboard_tab.dart';
 import 'package:flutter/material.dart';
 
 import '../constants.dart';
@@ -11,6 +8,8 @@ import '../tabs/marksheet_tab.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  static const String id = 'home_page';
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -24,7 +23,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Bots \'n Bids'),
-        backgroundColor: kSecondaryColor,
+        backgroundColor: kColorForeground,
         leading: const SizedBox(),
       ),
       body: IndexedStack(
